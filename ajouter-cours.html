@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un cours - Travail+</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+        }
+
+        .course-page {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .course-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .course-header {
+            margin-bottom: 25px;
+        }
+
+        .course-header h1 {
+            margin: 0 0 8px;
+            font-size: 28px;
+            color: #1f2937;
+        }
+
+        .course-header p {
+            margin: 0;
+            color: #6b7280;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            background: #fff;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .message {
+            display: none;
+            margin-bottom: 20px;
+            padding: 12px 15px;
+            border-radius: 8px;
+        }
+
+        .message.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .message.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        @media (max-width: 700px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .course-card {
+                padding: 20px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="course-page">
+
+    <div class="course-card">
+
+        <div class="course-header">
+            <h1>Ajouter un cours</h1>
+            <p>Créez un nouveau cours pour les étudiants de Travail+.</p>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <form id="courseForm">
+
+            <div class="form-group">
+                <label for="title">
+                    Titre du cours <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    required
+                    placeholder="Exemple : Introduction au développement Web"
+                >
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="theme">
+                        Thème <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="theme"
+                        name="theme"
+                        required
+                        placeholder="Exemple : Développement Web"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="faculty">
+                        Faculté <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="faculty"
+                        name="faculty"
+                        required
+                        placeholder="Exemple : Informatique"
+                    >
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="department">
+                        Département <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="department"
+                        name="department"
+                        required
+                        placeholder="Exemple : Génie logiciel"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="level">
+                        Niveau <span class="required">*</span>
+                    </label>
+
+                    <select id="level" name="level" required>
+                        <option value="">Sélectionner un niveau</option>
+                        <option value="Licence 1">Licence 1</option>
+                        <option value="Licence 2">Licence 2</option>
+                        <option value="Licence 3">Licence 3</option>
+                        <option value="Master 1">Master 1</option>
+                        <option value="Master 2">Master 2</option>
+                        <option value="Doctorat">Doctorat</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="description">
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Décrivez brièvement le cours..."
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="objectives">
+                    Objectifs
+                </label>
+
+                <textarea
+                    id="objectives"
+                    name="objectives"
+                    placeholder="Indiquez les objectifs pédagogiques du cours..."
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="content">
+                    Contenu du cours <span class="required">*</span>
+                </label>
+
+                <textarea
+                    id="content"
+                    name="content"
+                    required
+                    placeholder="Saisissez le contenu du cours..."
+                ></textarea>
+            </div>
+
+            <div class="actions">
+
+                <a href="admin.html?section=courses" class="btn btn-secondary">
+                    Annuler
+                </a>
+
+                <button type="submit" class="btn btn-primary" id="submitButton">
+                    Ajouter le cours
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+"use strict";
+
+const LOCAL_API = "http://localhost:5000/api/courses";
+const REMOTE_API = "https://travailplus-backend.onrender.com/api/courses";
+
+const API_BASE =
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+        ? LOCAL_API
+        : REMOTE_API;
+
+function getToken() {
+    return (
+        localStorage.getItem("travailplus_token") ||
+        localStorage.getItem("token") ||
+        localStorage.getItem("authToken")
+    );
+}
+
+const form = document.getElementById("courseForm");
+const message = document.getElementById("message");
+const submitButton = document.getElementById("submitButton");
+
+function showMessage(text, type) {
+    message.textContent = text;
+    message.className = "message " + type;
+}
+
+form.addEventListener("submit", async function (event) {
+
+    event.preventDefault();
+
+    const token = getToken();
+
+    if (!token) {
+        showMessage(
+            "Votre session a expiré. Veuillez vous reconnecter.",
+            "error"
+        );
+        return;
+    }
+
+    const title = document.getElementById("title").value.trim();
+    const theme = document.getElementById("theme").value.trim();
+    const faculty = document.getElementById("faculty").value.trim();
+    const department = document.getElementById("department").value.trim();
+    const level = document.getElementById("level").value;
+    const description = document.getElementById("description").value.trim();
+    const objectives = document.getElementById("objectives").value.trim();
+    const content = document.getElementById("content").value.trim();
+
+    if (!title || !theme || !faculty || !department || !level || !content) {
+        showMessage(
+            "Veuillez remplir tous les champs obligatoires.",
+            "error"
+        );
+        return;
+    }
+
+    const payload = {
+        title,
+        theme,
+        faculty,
+        department,
+        level,
+        description: description || null,
+        objectives: objectives || null,
+        content,
+        isAiGenerated: false
+    };
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Ajout en cours...";
+
+    try {
+
+        const response = await fetch(`${API_BASE}/admin`, {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+
+            body: JSON.stringify(payload)
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+            throw new Error(
+                data.message ||
+                data.error ||
+                "Impossible d'ajouter le cours."
+            );
+        }
+
+        showMessage(
+            "Cours ajouté avec succès.",
+            "success"
+        );
+
+        setTimeout(() => {
+            window.location.href = "admin.html?section=courses";
+        }, 800);
+
+    } catch (error) {
+
+        console.error("Erreur ajout cours :", error);
+
+        showMessage(
+            error.message || "Une erreur est survenue.",
+            "error"
+        );
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Ajouter le cours";
+    }
+
+});
+</script>
+
+</body>
+</html>

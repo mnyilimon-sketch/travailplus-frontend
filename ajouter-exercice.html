@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un exercice - Travail+</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+        }
+
+        .page {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            color: #1f2937;
+        }
+
+        .intro {
+            color: #6b7280;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            background: #fff;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        .question-card {
+            margin-top: 25px;
+            padding: 22px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: #fafafa;
+        }
+
+        .question-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .question-header h3 {
+            margin: 0;
+            color: #1f2937;
+        }
+
+        .option-row {
+            display: grid;
+            grid-template-columns: 45px 1fr;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .option-label {
+            font-weight: bold;
+            text-align: center;
+            padding: 11px 5px;
+            background: #e5e7eb;
+            border-radius: 8px;
+        }
+
+        .question-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 8px;
+            padding: 11px 18px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+        }
+
+        .btn-add {
+            margin-top: 20px;
+            background: #059669;
+            color: white;
+        }
+
+        .btn-add:hover {
+            background: #047857;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .message {
+            display: none;
+            margin-bottom: 20px;
+            padding: 12px 15px;
+            border-radius: 8px;
+        }
+
+        .message.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .message.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .empty-questions {
+            margin-top: 20px;
+            padding: 20px;
+            text-align: center;
+            color: #6b7280;
+            border: 1px dashed #d1d5db;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 700px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .question-header {
+                align-items: flex-start;
+                gap: 10px;
+                flex-direction: column;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="card">
+
+        <h1>Ajouter un exercice</h1>
+
+        <p class="intro">
+            Créez un exercice avec des questions à choix multiples pour les étudiants.
+        </p>
+
+        <div id="message" class="message"></div>
+
+        <form id="exerciseForm">
+
+            <div class="form-group">
+                <label for="title">
+                    Titre <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    required
+                    placeholder="Exemple : Quiz HTML débutant"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="description">
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                    placeholder="Décrivez l'exercice..."
+                ></textarea>
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="subject">
+                        Matière <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="subject"
+                        required
+                        placeholder="Exemple : Informatique"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="level">
+                        Niveau <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="level"
+                        required
+                        placeholder="Exemple : Licence 1"
+                    >
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="difficulty">
+                        Difficulté
+                    </label>
+
+                    <select id="difficulty">
+                        <option value="facile">Facile</option>
+                        <option value="moyen" selected>Moyen</option>
+                        <option value="difficile">Difficile</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="xp">
+                        XP <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        id="xp"
+                        min="1"
+                        value="10"
+                        required
+                    >
+                </div>
+
+            </div>
+
+            <h2>Questions</h2>
+
+            <div id="questionsContainer"></div>
+
+            <button
+                type="button"
+                class="btn btn-add"
+                id="addQuestionButton"
+            >
+                + Ajouter une question
+            </button>
+
+            <div class="actions">
+
+                <a
+                    href="admin.html?section=exercises"
+                    class="btn btn-secondary"
+                >
+                    Annuler
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="submitButton"
+                >
+                    Ajouter l'exercice
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+"use strict";
+
+const LOCAL_API = "http://localhost:5000/api";
+const REMOTE_API = "https://travailplus-backend.onrender.com/api";
+
+const API_BASE =
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+        ? LOCAL_API
+        : REMOTE_API;
+
+function getToken() {
+    return (
+        localStorage.getItem("travailplus_token") ||
+        localStorage.getItem("token") ||
+        localStorage.getItem("authToken")
+    );
+}
+
+const form = document.getElementById("exerciseForm");
+const questionsContainer =
+    document.getElementById("questionsContainer");
+const addQuestionButton =
+    document.getElementById("addQuestionButton");
+const submitButton =
+    document.getElementById("submitButton");
+const message =
+    document.getElementById("message");
+
+let questionCount = 0;
+
+function showMessage(text, type) {
+    message.textContent = text;
+    message.className = "message " + type;
+}
+
+function addQuestion() {
+
+    questionCount++;
+
+    const questionCard = document.createElement("div");
+
+    questionCard.className = "question-card";
+
+    questionCard.dataset.questionNumber = questionCount;
+
+    questionCard.innerHTML = `
+        <div class="question-header">
+            <h3>Question ${questionCount}</h3>
+
+            <button
+                type="button"
+                class="btn btn-danger remove-question"
+            >
+                Supprimer
+            </button>
+        </div>
+
+        <div class="form-group">
+            <label>
+                Question <span class="required">*</span>
+            </label>
+
+            <textarea
+                class="question-text"
+                required
+                placeholder="Écrivez la question..."
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+
+            <label>Options</label>
+
+            <div class="option-row">
+                <div class="option-label">A</div>
+
+                <input
+                    type="text"
+                    class="option-input"
+                    data-option="A"
+                    required
+                    placeholder="Option A"
+                >
+            </div>
+
+            <div class="option-row">
+                <div class="option-label">B</div>
+
+                <input
+                    type="text"
+                    class="option-input"
+                    data-option="B"
+                    required
+                    placeholder="Option B"
+                >
+            </div>
+
+            <div class="option-row">
+                <div class="option-label">C</div>
+
+                <input
+                    type="text"
+                    class="option-input"
+                    data-option="C"
+                    required
+                    placeholder="Option C"
+                >
+            </div>
+
+            <div class="option-row">
+                <div class="option-label">D</div>
+
+                <input
+                    type="text"
+                    class="option-input"
+                    data-option="D"
+                    required
+                    placeholder="Option D"
+                >
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label>
+                    Bonne réponse <span class="required">*</span>
+                </label>
+
+                <select class="correct-answer" required>
+                    <option value="">Sélectionner</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Explication</label>
+
+            <textarea
+                class="explanation"
+                placeholder="Expliquez pourquoi cette réponse est correcte..."
+            ></textarea>
+
+        </div>
+    `;
+
+    questionsContainer.appendChild(questionCard);
+
+    questionCard
+        .querySelector(".remove-question")
+        .addEventListener("click", function () {
+
+            questionCard.remove();
+
+            renumberQuestions();
+        });
+}
+
+function renumberQuestions() {
+
+    const cards =
+        questionsContainer.querySelectorAll(".question-card");
+
+    cards.forEach((card, index) => {
+
+        const title = card.querySelector("h3");
+
+        title.textContent =
+            `Question ${index + 1}`;
+    });
+}
+
+addQuestionButton.addEventListener(
+    "click",
+    addQuestion
+);
+
+form.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const token = getToken();
+
+    if (!token) {
+        showMessage(
+            "Votre session a expiré. Veuillez vous reconnecter.",
+            "error"
+        );
+        return;
+    }
+
+    const title =
+        document.getElementById("title").value.trim();
+
+    const description =
+        document.getElementById("description").value.trim();
+
+    const subject =
+        document.getElementById("subject").value.trim();
+
+    const level =
+        document.getElementById("level").value.trim();
+
+    const difficulty =
+        document.getElementById("difficulty").value;
+
+    const xpReward =
+        Number(document.getElementById("xp").value);
+
+    const cards =
+        questionsContainer.querySelectorAll(".question-card");
+
+    if (cards.length === 0) {
+
+        showMessage(
+            "Ajoutez au moins une question.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (!xpReward || xpReward <= 0) {
+
+        showMessage(
+            "L'XP doit être supérieure à 0.",
+            "error"
+        );
+
+        return;
+    }
+
+    const questions = [];
+
+    for (const card of cards) {
+
+        const questionText =
+            card.querySelector(".question-text")
+                .value.trim();
+
+        const optionInputs =
+            card.querySelectorAll(".option-input");
+
+        const options = {};
+
+        optionInputs.forEach(input => {
+
+            options[input.dataset.option] =
+                input.value.trim();
+
+        });
+
+        const correctAnswer =
+            card.querySelector(".correct-answer").value;
+
+        const explanation =
+            card.querySelector(".explanation")
+                .value.trim();
+
+        if (
+            !questionText ||
+            !options.A ||
+            !options.B ||
+            !options.C ||
+            !options.D ||
+            !correctAnswer
+        ) {
+
+            showMessage(
+                "Veuillez remplir complètement chaque question.",
+                "error"
+            );
+
+            return;
+        }
+
+        questions.push({
+            question: questionText,
+            options,
+            correctAnswer,
+            explanation
+        });
+    }
+
+    const payload = {
+        title,
+        description,
+        subject,
+        level,
+        difficulty,
+        xpReward,
+        questions
+    };
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Ajout en cours...";
+
+    try {
+
+        const response = await fetch(
+            `${API_BASE}/exercises`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+
+                body: JSON.stringify(payload)
+            }
+        );
+
+        const data =
+            await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                data.error ||
+                "Impossible d'ajouter l'exercice."
+            );
+        }
+
+        showMessage(
+            "Exercice ajouté avec succès.",
+            "success"
+        );
+
+        setTimeout(() => {
+
+            window.location.href =
+                "admin.html?section=exercises";
+
+        }, 800);
+
+    } catch (error) {
+
+        console.error(
+            "Erreur ajout exercice :",
+            error
+        );
+
+        showMessage(
+            error.message ||
+            "Une erreur est survenue.",
+            "error"
+        );
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+            "Ajouter l'exercice";
+    }
+
+});
+
+addQuestion();
+</script>
+
+</body>
+</html>

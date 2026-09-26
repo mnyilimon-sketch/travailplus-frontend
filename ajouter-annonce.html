@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une annonce - Travail+</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+        }
+
+        .page {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            color: #1f2937;
+        }
+
+        .intro {
+            margin-bottom: 25px;
+            color: #6b7280;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        textarea {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-group input {
+            width: auto;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .message {
+            display: none;
+            margin-bottom: 20px;
+            padding: 12px 15px;
+            border-radius: 8px;
+        }
+
+        .message.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .message.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 20px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="card">
+
+        <h1>Ajouter une annonce</h1>
+
+        <p class="intro">
+            Publiez une nouvelle annonce pour les étudiants de Travail+.
+        </p>
+
+        <div id="message" class="message"></div>
+
+        <form id="announcementForm">
+
+            <div class="form-group">
+                <label for="title">
+                    Titre de l'annonce <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    required
+                    placeholder="Exemple : Bienvenue sur Travail+"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="content">
+                    Contenu <span class="required">*</span>
+                </label>
+
+                <textarea
+                    id="content"
+                    name="content"
+                    required
+                    placeholder="Écrivez le contenu de votre annonce..."
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="type">
+                    Type d'annonce
+                </label>
+
+                <select id="type" name="type">
+                    <option value="info">Information</option>
+                    <option value="success">Succès</option>
+                    <option value="warning">Avertissement</option>
+                    <option value="error">Important</option>
+                </select>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input
+                    type="checkbox"
+                    id="active"
+                    name="active"
+                    checked
+                >
+
+                <label for="active">
+                    Publier cette annonce immédiatement
+                </label>
+            </div>
+
+            <div class="actions">
+
+                <a
+                    href="admin.html?section=announcements"
+                    class="btn btn-secondary"
+                >
+                    Annuler
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="submitButton"
+                >
+                    Ajouter l'annonce
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+"use strict";
+
+const LOCAL_API = "http://localhost:5000/api";
+const REMOTE_API = "https://travailplus-backend.onrender.com/api";
+
+const API_BASE =
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+        ? LOCAL_API
+        : REMOTE_API;
+
+function getToken() {
+    return (
+        localStorage.getItem("travailplus_token") ||
+        localStorage.getItem("token") ||
+        localStorage.getItem("authToken")
+    );
+}
+
+const form = document.getElementById("announcementForm");
+const message = document.getElementById("message");
+const submitButton = document.getElementById("submitButton");
+
+function showMessage(text, type) {
+    message.textContent = text;
+    message.className = "message " + type;
+}
+
+form.addEventListener("submit", async function (event) {
+
+    event.preventDefault();
+
+    const token = getToken();
+
+    if (!token) {
+        showMessage(
+            "Votre session a expiré. Veuillez vous reconnecter.",
+            "error"
+        );
+        return;
+    }
+
+    const title = document.getElementById("title").value.trim();
+    const content = document.getElementById("content").value.trim();
+    const type = document.getElementById("type").value;
+    const active = document.getElementById("active").checked;
+
+    if (!title || !content) {
+        showMessage(
+            "Veuillez remplir tous les champs obligatoires.",
+            "error"
+        );
+        return;
+    }
+
+    const payload = {
+        title,
+        content,
+        type,
+        active
+    };
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Ajout en cours...";
+
+    try {
+
+        const response = await fetch(
+            `${API_BASE}/admin/announcements`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+
+                body: JSON.stringify(payload)
+            }
+        );
+
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+            throw new Error(
+                data.message ||
+                data.error ||
+                "Impossible d'ajouter l'annonce."
+            );
+        }
+
+        showMessage(
+            "Annonce ajoutée avec succès.",
+            "success"
+        );
+
+        setTimeout(() => {
+            window.location.href =
+                "admin.html?section=announcements";
+        }, 800);
+
+    } catch (error) {
+
+        console.error("Erreur ajout annonce :", error);
+
+        showMessage(
+            error.message || "Une erreur est survenue.",
+            "error"
+        );
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Ajouter l'annonce";
+    }
+
+});
+</script>
+
+</body>
+</html>
