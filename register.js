@@ -1,178 +1,190 @@
 "use strict";
-const confirmPasswordInput = document.getElementById("confirmPassword");
-const termsInput = document.getElementById("terms");
+
+/* ======================================================
+   TRAVAIL+ — INSCRIPTION
+   Local : http://localhost:5000
+   Production : Render
+====================================================== */
 
 const API_URL =
     window.location.hostname === "localhost" ||
     window.location.hostname === "127.0.0.1"
         ? "http://localhost:5000/api/auth"
-        : "https://TON-BACKEND.onrender.com/api/auth";
-    `${window.TravailPlusConfig?.apiBase || "http://localhost:5000/api"}/auth`;
+        : "https://travailplus-backend.onrender.com/api/auth";
 
+document.addEventListener("DOMContentLoaded", () => {
+    const registerForm = document.getElementById("registerForm");
 
-if (!registerForm) {
-    console.error("Formulaire d'inscription introuvable.");
-const registerForm = document.getElementById("registerForm");
-const registerMessage = document.getElementById("registerMessage");
-const registerButton = document.getElementById("registerButton");
-}
-if (!registerForm) {
-    console.error("Formulaire d'inscription introuvable.");
-} else {
+    if (!registerForm) {
+        console.error("Formulaire d'inscription introuvable.");
+        return;
+    }
 
-    registerForm.addEventListener("submit", async function (event) {
-
+    registerForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
+        const submitButton =
+            registerForm.querySelector('button[type="submit"]');
+
+        const messageElement =
+            document.getElementById("registerMessage") ||
+            document.getElementById("message");
+
         const firstName =
-            document.getElementById("firstName")?.value.trim();
+            document.getElementById("firstName")?.value.trim() || "";
 
         const lastName =
-            document.getElementById("lastName")?.value.trim();
+            document.getElementById("lastName")?.value.trim() || "";
 
         const email =
-            document.getElementById("email")?.value.trim().toLowerCase();
+            document.getElementById("email")?.value.trim() || "";
 
         const password =
-            document.getElementById("password")?.value;
+            document.getElementById("password")?.value || "";
+
+        const confirmPassword =
+            document.getElementById("confirmPassword")?.value || "";
 
         const faculty =
-            document.getElementById("faculty")?.value.trim();
+            document.getElementById("faculty")?.value.trim() || "";
 
         const department =
-            document.getElementById("department")?.value.trim();
+            document.getElementById("department")?.value.trim() || "";
 
         const level =
-            document.getElementById("level")?.value.trim();
+            document.getElementById("level")?.value.trim() || "";
 
-        if (
-            !firstName ||
-            !lastName ||
-            !email ||
-            !password ||
-            !faculty ||
-            !department ||
-            !level
-        ) {
+        const terms =
+            document.getElementById("terms")?.checked ?? true;
+
+        if (!firstName || !lastName || !email || !password) {
             showMessage(
-                "Tous les champs sont obligatoires.",
+                "Veuillez remplir tous les champs obligatoires.",
                 "error"
             );
             return;
         }
 
-        if (password.length < 8) {
+        if (password !== confirmPassword) {
             showMessage(
-                "Le mot de passe doit contenir au moins 8 caractères.",
+                "Les mots de passe ne correspondent pas.",
                 "error"
             );
             return;
         }
 
-        setLoading(true);
+        if (!terms) {
+            showMessage(
+                "Vous devez accepter les conditions d'utilisation.",
+                "error"
+            );
+            return;
+        }
 
-        showMessage(
-            "Création du compte...",
-            "info"
-        );
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.dataset.originalText =
+                submitButton.textContent;
+
+            submitButton.textContent = "Création du compte...";
+        }
 
         try {
+            console.log("Inscription via :", `${API_URL}/register`);
 
-            const response = await fetch(
-                `${API_URL}/register`,
-                {
-                    method: "POST",
+            const response = await fetch(`${API_URL}/register`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                    faculty,
+                    department,
+                    level
+                })
+            });
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+            let data = {};
 
-                    body: JSON.stringify({
-                        firstName,
-                        lastName,
-                        email,
-                        password,
-                        faculty,
-                        department,
-                        level
-                    })
-                }
-            );
-
-            const data = await response.json();
+            try {
+                data = await response.json();
+            } catch {
+                data = {};
+            }
 
             if (!response.ok) {
-
-                showMessage(
+                throw new Error(
                     data.message ||
-                    "Impossible de créer le compte.",
-                    "error"
+                    data.error ||
+                    `Erreur serveur (${response.status})`
                 );
+            }
 
-                return;
+            console.log("Inscription réussie :", data);
+
+            if (data.token) {
+                localStorage.setItem(
+                    "travailplus_token",
+                    data.token
+                );
+            }
+
+            if (data.user) {
+                localStorage.setItem(
+                    "travailplus_user",
+                    JSON.stringify(data.user)
+                );
             }
 
             showMessage(
-                "Compte créé avec succès ! Redirection vers la connexion...",
+                data.message ||
+                "Compte créé avec succès. Redirection...",
                 "success"
             );
 
-            setTimeout(function () {
-
+            setTimeout(() => {
                 window.location.href = "login.html";
-
-            }, 1200);
+            }, 1000);
 
         } catch (error) {
-
             console.error(
                 "Erreur inscription :",
                 error
             );
 
             showMessage(
-                "Impossible de contacter le serveur.",
+                error.message ||
+                "Impossible de contacter le serveur. Vérifiez que le backend fonctionne.",
                 "error"
             );
 
         } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
 
-            setLoading(false);
+                submitButton.textContent =
+                    submitButton.dataset.originalText ||
+                    "Créer mon compte";
+            }
         }
     });
-}
 
+    function showMessage(message, type) {
+        const element =
+            document.getElementById("registerMessage") ||
+            document.getElementById("message");
 
-function showMessage(message, type) {
+        if (!element) {
+            alert(message);
+            return;
+        }
 
-    if (!registerMessage) {
-        alert(message);
-        return;
+        element.textContent = message;
+        element.className = `message ${type}`;
+        element.style.display = "block";
     }
-
-    registerMessage.textContent = message;
-
-    registerMessage.className =
-        "register-message " + type;
-}
-
-
-function setLoading(isLoading) {
-
-    if (!registerButton) {
-        return;
-    }
-
-    registerButton.disabled = isLoading;
-
-    const span =
-        registerButton.querySelector("span");
-
-    if (span) {
-
-        span.textContent =
-            isLoading
-                ? "Création du compte..."
-                : "Créer mon compte";
-    }
-}
+});
