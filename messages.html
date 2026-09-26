@@ -1,0 +1,133 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Travail+ — Messages</title>
+
+    <link rel="stylesheet" href="messages.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="logo">
+        Travail<span>+</span>
+    </div>
+
+    <button
+        id="backButton"
+        class="back-button"
+        type="button"
+    >
+        ← Dashboard
+    </button>
+
+</header>
+
+
+<main class="messages-container">
+
+    <section class="messages-header">
+
+        <p class="small-title">
+            COMMUNAUTÉ
+        </p>
+
+        <h1>Messages</h1>
+
+        <p>
+            Échange avec les autres étudiants de Travail+.
+        </p>
+
+    </section>
+
+
+    <section class="channel-bar">
+
+        <button
+            class="channel-button active"
+            data-channel="general"
+            type="button"
+        >
+            Général
+        </button>
+
+        <button
+            class="channel-button"
+            data-channel="faculty"
+            type="button"
+        >
+            Faculté
+        </button>
+
+        <button
+            class="channel-button"
+            data-channel="department"
+            type="button"
+        >
+            Département
+        </button>
+
+    </section>
+
+
+    <section class="messages-card">
+
+        <div
+            id="messagesLoading"
+            class="status"
+        >
+            Chargement des messages...
+        </div>
+
+
+        <div
+            id="messagesError"
+            class="status error hidden"
+        ></div>
+
+
+        <div
+            id="messagesList"
+            class="messages-list"
+        ></div>
+
+
+        <form
+            id="messageForm"
+            class="message-form"
+        >
+
+            <input
+                id="messageInput"
+                type="text"
+                placeholder="Écris ton message..."
+                maxlength="2000"
+                autocomplete="off"
+            >
+
+            <button
+                id="sendMessageButton"
+                type="submit"
+            >
+                Envoyer
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<script src="messages.js"></script>
+
+</body>
+
+</html>

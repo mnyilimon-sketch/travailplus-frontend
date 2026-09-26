@@ -1,0 +1,113 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Travail+ - Historique des achats</title>
+
+    <link
+        rel="stylesheet"
+        href="shop-history.css"
+    >
+</head>
+
+<body>
+
+    <header class="history-header">
+
+        <div class="header-content">
+
+            <a
+                href="shop.html"
+                class="back-link"
+            >
+                ← Boutique
+            </a>
+
+            <div class="header-title">
+                <h1>Mes achats</h1>
+
+                <p>
+                    Retrouvez ici tous vos achats effectués
+                    dans la boutique Travail+.
+                </p>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="history-container">
+
+        <div
+            id="historyMessage"
+            class="history-message"
+            hidden
+        ></div>
+
+
+        <section
+            id="historyLoading"
+            class="state-card"
+        >
+            <div class="loading-spinner"></div>
+
+            <p>
+                Chargement de votre historique...
+            </p>
+        </section>
+
+
+        <section
+            id="historyEmpty"
+            class="state-card empty-state"
+            hidden
+        >
+
+            <div class="empty-icon">
+                🛍️
+            </div>
+
+            <h2>
+                Aucun achat
+            </h2>
+
+            <p>
+                Vous n'avez encore effectué aucun achat
+                dans la boutique.
+            </p>
+
+            <a
+                href="shop.html"
+                class="shop-button"
+            >
+                Découvrir la boutique
+            </a>
+
+        </section>
+
+
+        <section
+            id="historyList"
+            class="history-list"
+            hidden
+        ></section>
+
+    </main>
+
+
+    <script src="auth.js"></script>
+    <script src="shop-history.js"></script>
+
+</body>
+
+</html>

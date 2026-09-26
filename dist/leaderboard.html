@@ -1,0 +1,213 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Travail+ — Classement</title>
+
+    <link rel="stylesheet" href="leaderboard.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="logo">
+        Travail<span>+</span>
+    </div>
+
+    <button
+        id="backButton"
+        class="back-button"
+        type="button"
+    >
+        ← Dashboard
+    </button>
+
+</header>
+
+
+<main class="leaderboard-container">
+
+    <section class="leaderboard-header">
+
+        <p class="small-title">
+            GAMIFICATION
+        </p>
+
+        <h1>
+            Classement
+        </h1>
+
+        <p>
+            Compare ta progression XP avec les autres étudiants
+            de Travail+.
+        </p>
+
+    </section>
+
+
+    <!-- ==================================================
+         MA POSITION
+         ================================================== -->
+
+    <section
+        id="myRankingCard"
+        class="my-ranking-card"
+    >
+
+        <div class="my-ranking-position">
+
+            <span class="ranking-label">
+                Ma position
+            </span>
+
+            <strong id="myRank">
+                —
+            </strong>
+
+        </div>
+
+
+        <div class="my-ranking-info">
+
+            <h2 id="myName">
+                Chargement...
+            </h2>
+
+            <p id="myDetails">
+                —
+            </p>
+
+        </div>
+
+
+        <div class="my-ranking-xp">
+
+            <strong id="myXp">
+                0
+            </strong>
+
+            <span>
+                XP
+            </span>
+
+        </div>
+
+    </section>
+
+    <a href="shop.html" class="dashboard-card">
+    <div class="dashboard-card-icon">
+        🛍️
+    </div>
+
+    <div class="dashboard-card-content">
+        <h3>Boutique</h3>
+        <p>
+            Échange ton XP contre des récompenses.
+        </p>
+    </div>
+
+    <span class="dashboard-card-arrow">
+        →
+    </span>
+</a>
+
+
+    <!-- ==================================================
+         TOP 3
+         ================================================== -->
+
+    <section class="top-section">
+
+        <div class="section-title">
+
+            <div>
+                <p class="small-title">
+                    LES MEILLEURS
+                </p>
+
+                <h2>
+                    Top 3
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div
+            id="topThreeLoading"
+            class="status"
+        >
+            Chargement du Top 3...
+        </div>
+
+
+        <div
+            id="topThreeError"
+            class="status error hidden"
+        ></div>
+
+
+        <div
+            id="topThree"
+            class="top-three"
+        ></div>
+
+    </section>
+
+
+    <!-- ==================================================
+         CLASSEMENT COMPLET
+         ================================================== -->
+
+    <section class="ranking-section">
+
+        <div class="section-title">
+
+            <div>
+
+                <p class="small-title">
+                    CLASSEMENT
+                </p>
+
+                <h2>
+                    Tous les étudiants
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="leaderboardLoading"
+            class="status"
+        >
+            Chargement du classement...
+        </div>
+
+
+        <div
+            id="leaderboardError"
+            class="status error hidden"
+        ></div>
+
+
+        <div
+            id="leaderboardList"
+            class="leaderboard-list"
+        ></div>
+
+    </section>
+
+</main>
+
+
+<script src="leaderboard.js"></script>
+
+</body>
+</html>

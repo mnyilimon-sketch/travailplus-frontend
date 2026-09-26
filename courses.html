@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travail+ - Cours</title>
+    <link rel="stylesheet" href="courses.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <a class="logo" href="dashboard.html">Travail<span>+</span></a>
+        <div class="topbar-actions">
+            <a class="manage-button" href="admin.html">Gérer les cours</a>
+            <button id="backButton" class="back-button" type="button">&#8592; Dashboard</button>
+        </div>
+    </header>
+
+    <main class="courses-page">
+        <section class="page-header">
+            <p class="eyebrow">APPRENDISSAGE</p>
+            <h1>Les cours en ligne</h1>
+            <p>Retrouve les cours publiés par ton administration et avance à ton rythme.</p>
+        </section>
+
+        <section class="search-panel" aria-label="Recherche de cours">
+            <label for="courseSearch">Rechercher un cours</label>
+            <div class="search-row">
+                <input id="courseSearch" type="search" placeholder="Titre, thème, matière ou niveau..." autocomplete="off">
+                <button id="searchButton" class="primary-button" type="button">Rechercher</button>
+                <button id="googleSearchButton" class="secondary-button" type="button">Rechercher sur Google</button>
+            </div>
+        </section>
+
+        <p id="coursesMessage" class="message" hidden></p>
+        <p id="coursesLoading" class="loading">Chargement des cours...</p>
+        <section id="coursesContainer" class="courses-grid" aria-live="polite"></section>
+        <p id="coursesEmpty" class="empty-state" hidden>Aucun cours ne correspond à ta recherche.</p>
+    </main>
+
+    <dialog id="courseDialog" class="course-dialog">
+        <button id="closeDialog" class="close-button" type="button" aria-label="Fermer">&#10005;</button>
+        <p id="dialogMeta" class="course-meta"></p>
+        <h2 id="dialogTitle"></h2>
+        <p id="dialogDescription" class="dialog-description"></p>
+        <h3>Objectifs</h3>
+        <ul id="dialogObjectives"></ul>
+        <h3>Contenu du cours</h3>
+        <div id="dialogContent" class="course-content"></div>
+    </dialog>
+
+    <script src="courses.js"></script>
+</body>
+
+</html>

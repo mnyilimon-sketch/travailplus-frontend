@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Travail+ — Administration Boutique</title>
+
+    <link
+        rel="stylesheet"
+        href="shop-admin.css"
+    >
+</head>
+
+<body>
+
+    <header class="admin-header">
+
+        <div>
+            <a
+                href="dashboard.html"
+                class="back-link"
+            >
+                ← Tableau de bord
+            </a>
+        </div>
+
+        <div class="header-title">
+            <h1>🛍️ Gestion de la boutique</h1>
+            <p>Administration des récompenses Travail+</p>
+        </div>
+
+        <div class="admin-user">
+            <span id="adminName">
+                Administrateur
+            </span>
+        </div>
+
+    </header>
+
+
+    <main class="admin-container">
+
+        <div
+            id="adminMessage"
+            class="admin-message"
+        ></div>
+
+
+        <!-- ==========================================
+             FORMULAIRE
+        =========================================== -->
+
+        <section class="admin-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2 id="formTitle">
+                        Ajouter un article
+                    </h2>
+
+                    <p>
+                        Crée ou modifie une récompense.
+                    </p>
+                </div>
+
+                <button
+                    id="cancelEdit"
+                    class="btn-secondary"
+                    type="button"
+                    hidden
+                >
+                    Annuler la modification
+                </button>
+
+            </div>
+
+
+            <form id="shopForm">
+
+                <input
+                    type="hidden"
+                    id="itemId"
+                >
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Nom de l'article
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            maxlength="255"
+                            required
+                            placeholder="Ex : Bon d'achat"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="priceXp">
+                            Prix en XP
+                        </label>
+
+                        <input
+                            type="number"
+                            id="priceXp"
+                            min="0"
+                            step="1"
+                            required
+                            placeholder="Ex : 500"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="description"
+                            rows="4"
+                            placeholder="Description de la récompense"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="imageUrl">
+                            URL de l'image
+                        </label>
+
+                        <input
+                            type="url"
+                            id="imageUrl"
+                            placeholder="https://..."
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="stock">
+                            Stock
+                        </label>
+
+                        <input
+                            type="number"
+                            id="stock"
+                            min="0"
+                            step="1"
+                            placeholder="Laisser vide = illimité"
+                        >
+
+                        <small>
+                            Un stock vide signifie que l'article
+                            est disponible sans limite.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        id="submitButton"
+                        class="btn-primary"
+                    >
+                        Ajouter l'article
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- ==========================================
+             LISTE DES ARTICLES
+        =========================================== -->
+
+        <section class="admin-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Articles de la boutique</h2>
+
+                    <p>
+                        Gérez les récompenses disponibles.
+                    </p>
+                </div>
+
+                <button
+                    id="refreshButton"
+                    class="btn-secondary"
+                    type="button"
+                >
+                    ↻ Actualiser
+                </button>
+
+            </div>
+
+
+            <div
+                id="shopLoading"
+                class="loading"
+            >
+                Chargement des articles...
+            </div>
+
+
+            <div
+                id="shopEmpty"
+                class="empty-state"
+                hidden
+            >
+                <div>🛍️</div>
+
+                <h3>
+                    Aucun article
+                </h3>
+
+                <p>
+                    Créez votre premier article.
+                </p>
+            </div>
+
+
+            <div
+                id="shopTableContainer"
+                class="table-container"
+                hidden
+            >
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Article</th>
+                            <th>Prix XP</th>
+                            <th>Stock</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="shopTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="auth.js"></script>
+    <script src="shop-admin.js"></script>
+
+</body>
+
+</html>

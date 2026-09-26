@@ -1,0 +1,110 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Travail+ — Notifications</title>
+
+    <link rel="stylesheet" href="notifications.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="logo">
+        Travail<span>+</span>
+    </div>
+
+    <button
+        id="backButton"
+        class="back-button"
+        type="button"
+    >
+        ← Dashboard
+    </button>
+
+</header>
+
+
+<main class="notifications-container">
+
+    <section class="notifications-header">
+
+        <div>
+            <p class="small-title">
+                CENTRE DE NOTIFICATIONS
+            </p>
+
+            <h1>
+                Notifications
+            </h1>
+
+            <p>
+                Retrouve ici toutes les informations importantes
+                concernant ton activité sur Travail+.
+            </p>
+        </div>
+
+        <button
+            id="markAllButton"
+            class="mark-all-button"
+            type="button"
+        >
+            ✓ Tout marquer comme lu
+        </button>
+
+    </section>
+
+
+    <section class="notifications-card">
+
+        <div
+            id="notificationsLoading"
+            class="status"
+        >
+            Chargement des notifications...
+        </div>
+
+
+        <div
+            id="notificationsError"
+            class="status error hidden"
+        ></div>
+
+
+        <div
+            id="notificationsEmpty"
+            class="empty-state hidden"
+        >
+            <div class="empty-icon">
+                🔔
+            </div>
+
+            <h2>
+                Aucune notification
+            </h2>
+
+            <p>
+                Tu n'as aucune nouvelle notification pour le moment.
+            </p>
+        </div>
+
+
+        <div
+            id="notificationsList"
+            class="notifications-list"
+        ></div>
+
+    </section>
+
+</main>
+
+
+<script src="notifications.js"></script>
+
+</body>
+</html>

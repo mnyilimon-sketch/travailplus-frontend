@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Travail+ — Exercices d'entraînement et progression académique"
+    >
+
+    <title>Travail+ — Exercices</title>
+
+    <link
+        rel="stylesheet"
+        href="exercises.css"
+    >
+</head>
+
+<body>
+
+    <!-- ==================================================
+         HEADER
+    =================================================== -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div
+                class="brand-logo"
+                aria-hidden="true"
+            >
+                T+
+            </div>
+
+            <div class="brand-text">
+
+                <h1>Travail+</h1>
+
+                <span>
+                    Exercices
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <div
+                class="xp-badge"
+                aria-label="Expérience actuelle"
+            >
+
+                <span aria-hidden="true">
+                    ⭐
+                </span>
+
+                <span id="headerXP">
+                    0 XP
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="back-button"
+                id="backButton"
+            >
+
+                <span aria-hidden="true">
+                    ←
+                </span>
+
+                Tableau de bord
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==================================================
+         CONTENU PRINCIPAL
+    =================================================== -->
+
+    <main class="container">
+
+
+        <!-- ==================================================
+             HERO
+        =================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="hero-tag">
+                    🎯 APPRENTISSAGE
+                </span>
+
+
+                <h2>
+                    Développe tes compétences
+                </h2>
+
+
+                <p>
+                    Entraîne-toi avec des exercices,
+                    améliore ton score et gagne de l'XP.
+                </p>
+
+            </div>
+
+
+            <div
+                class="hero-icon"
+                aria-hidden="true"
+            >
+                🧠
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             STATISTIQUES
+        =================================================== -->
+
+        <section
+            class="stats-grid"
+            aria-label="Statistiques des exercices"
+        >
+
+
+            <!-- TOTAL -->
+
+            <div class="stat-card">
+
+                <div
+                    class="stat-icon"
+                    aria-hidden="true"
+                >
+                    📚
+                </div>
+
+
+                <div class="stat-content">
+
+                    <strong id="totalExercises">
+                        0
+                    </strong>
+
+                    <span>
+                        Exercices disponibles
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- TERMINÉS -->
+
+            <div class="stat-card">
+
+                <div
+                    class="stat-icon"
+                    aria-hidden="true"
+                >
+                    ✅
+                </div>
+
+
+                <div class="stat-content">
+
+                    <strong id="completedExercises">
+                        0
+                    </strong>
+
+                    <span>
+                        Exercices terminés
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- XP -->
+
+            <div class="stat-card">
+
+                <div
+                    class="stat-icon"
+                    aria-hidden="true"
+                >
+                    ⭐
+                </div>
+
+
+                <div class="stat-content">
+
+                    <strong id="totalXP">
+                        0 XP
+                    </strong>
+
+                    <span>
+                        XP gagnés
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             BARRE DE RECHERCHE + FILTRES
+        =================================================== -->
+
+        <section
+            class="toolbar"
+            aria-label="Filtres des exercices"
+        >
+
+
+            <!-- RECHERCHE -->
+
+            <div class="search-box">
+
+                <span
+                    aria-hidden="true"
+                >
+                    🔎
+                </span>
+
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Rechercher un exercice..."
+                    autocomplete="off"
+                    aria-label="Rechercher un exercice"
+                >
+
+                
+
+            </div>
+
+
+            <!-- MATIÈRE -->
+
+            <select
+                id="subjectFilter"
+                aria-label="Filtrer par matière"
+            >
+
+                <option value="all">
+                    Toutes les matières
+                </option>
+
+            </select>
+
+
+            <!-- NIVEAU -->
+
+            <select
+                id="levelFilter"
+                aria-label="Filtrer par niveau"
+            >
+
+                <option value="all">
+                    Tous les niveaux
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- ==================================================
+             MESSAGE SYSTÈME
+        =================================================== -->
+
+        <div
+            id="pageMessage"
+            class="page-message hidden"
+            role="alert"
+            aria-live="polite"
+        ></div>
+
+
+        <!-- ==================================================
+             CHARGEMENT
+        =================================================== -->
+
+        <section
+            id="loading"
+            class="loading"
+            aria-live="polite"
+        >
+
+            <div
+                class="spinner"
+                aria-hidden="true"
+            ></div>
+
+            <p>
+                Chargement des exercices...
+            </p>
+
+        </section>
+
+
+        <!-- ==================================================
+             LISTE DES EXERCICES
+        =================================================== -->
+
+        <section
+            id="exerciseGrid"
+            class="exercise-grid"
+            aria-label="Liste des exercices"
+        ></section>
+
+
+        <!-- ==================================================
+             ÉTAT VIDE
+        =================================================== -->
+
+        <section
+            id="emptyState"
+            class="empty-state hidden"
+        >
+
+            <div
+                class="empty-icon"
+                aria-hidden="true"
+            >
+                📚
+            </div>
+
+
+            <h3>
+                Aucun exercice trouvé
+            </h3>
+
+
+            <p>
+                Aucun exercice ne correspond à ta recherche
+                ou aux filtres sélectionnés.
+            </p>
+
+
+            <button
+                type="button"
+                id="resetFilters"
+                class="primary-button"
+            >
+                Réinitialiser les filtres
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================================================
+         MODAL — EXERCICE
+    =================================================== -->
+
+    <div
+        id="exerciseModal"
+        class="modal hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+    >
+
+        <!-- OVERLAY -->
+
+        <div
+            class="modal-overlay"
+            aria-hidden="true"
+        ></div>
+
+
+        <!-- CONTENU -->
+
+        <div class="modal-content">
+
+
+            <!-- FERMER -->
+
+            <button
+                type="button"
+                id="closeModal"
+                class="close-modal"
+                aria-label="Fermer l'exercice"
+            >
+                ×
+            </button>
+
+
+            <!-- ==================================================
+                 HEADER EXERCICE
+            =================================================== -->
+
+            <div class="exercise-header">
+
+                <div class="exercise-header-info">
+
+                    <span
+                        id="modalSubject"
+                        class="subject-badge"
+                    >
+                        Matière
+                    </span>
+
+
+                    <h2 id="modalTitle">
+                        Exercice
+                    </h2>
+
+
+                    <p id="modalDescription"></p>
+
+                </div>
+
+
+                <div
+                    id="modalXP"
+                    class="modal-xp"
+                >
+                    +10 XP
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 PROGRESSION
+            =================================================== -->
+
+            <div class="progress-section">
+
+                <div class="progress-info">
+
+                    <span id="questionCounter">
+                        Question 1 / 1
+                    </span>
+
+
+                    <span id="progressPercent">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="progress-bar"
+                    role="progressbar"
+                    aria-label="Progression de l'exercice"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                >
+
+                    <div
+                        id="progressFill"
+                        class="progress-fill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 QUESTION
+            =================================================== -->
+
+            <div
+                id="questionContainer"
+                class="question-container"
+            ></div>
+
+
+            <!-- ==================================================
+                 NAVIGATION
+            =================================================== -->
+
+            <div class="question-actions">
+
+
+                <button
+                    type="button"
+                    id="previousQuestion"
+                    class="secondary-button"
+                >
+                    ← Précédente
+                </button>
+
+
+                <button
+                    type="button"
+                    id="nextQuestion"
+                    class="primary-button"
+                >
+                    Suivante →
+                </button>
+
+
+                <button
+                    type="button"
+                    id="submitExercise"
+                    class="success-button hidden"
+                >
+                    ✓ Terminer l'exercice
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         MODAL — RÉSULTAT
+    =================================================== -->
+
+    <div
+        id="resultModal"
+        class="modal hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="resultTitle"
+    >
+
+        <!-- OVERLAY -->
+
+        <div
+            class="modal-overlay"
+            aria-hidden="true"
+        ></div>
+
+
+        <!-- CONTENU RÉSULTAT -->
+
+        <div class="result-content">
+
+
+            <!-- ICÔNE -->
+
+            <div
+                id="resultIcon"
+                class="result-icon"
+                aria-hidden="true"
+            >
+                🎉
+            </div>
+
+
+            <!-- LABEL -->
+
+            <span class="result-label">
+                EXERCICE TERMINÉ
+            </span>
+
+
+            <!-- TITRE -->
+
+            <h2 id="resultTitle">
+                Excellent travail !
+            </h2>
+
+
+            <!-- SCORE -->
+
+            <div
+                id="resultScore"
+                class="result-score"
+            >
+                100%
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <p id="resultMessage">
+                Tu as terminé l'exercice.
+            </p>
+
+
+            <!-- ==================================================
+                 STATISTIQUES DU RÉSULTAT
+            =================================================== -->
+
+            <div class="result-stats">
+
+
+                <!-- BONNES RÉPONSES -->
+
+                <div class="result-stat">
+
+                    <strong id="resultCorrect">
+                        0
+                    </strong>
+
+                    <span>
+                        Bonnes réponses
+                    </span>
+
+                </div>
+
+
+                <!-- XP -->
+
+                <div class="result-stat">
+
+                    <strong id="resultXP">
+                        +0 XP
+                    </strong>
+
+                    <span>
+                        XP gagnés
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 ACTIONS
+            =================================================== -->
+
+            <div class="result-actions">
+
+                <button
+                    type="button"
+                    id="closeResult"
+                    class="primary-button"
+                >
+                    Continuer
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+    =================================================== -->
+
+    <script src="exercises.js"></script>
+
+</body>
+</html>

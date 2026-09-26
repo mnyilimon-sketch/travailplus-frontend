@@ -1,0 +1,646 @@
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inscription | Travail+</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+</head>
+
+
+<body class="auth-page">
+
+<main class="auth-container">
+
+
+    <!-- =================================================
+         PARTIE PRESENTATION
+         ================================================= -->
+
+    <section class="auth-presentation">
+
+        <a href="index.html" class="logo auth-logo">
+            Travail<span>+</span>
+        </a>
+
+
+        <div class="presentation-content">
+
+            <span class="section-label">
+                REJOINS TRAVAIL+
+            </span>
+
+            <h1>
+                Construis ton
+                <span>parcours académique.</span>
+            </h1>
+
+            <p>
+                Crée ton compte Travail+ et commence à gagner
+                de l'XP, accomplir des missions, participer aux
+                quiz et échanger avec ta communauté.
+            </p>
+
+
+            <div class="presentation-features">
+
+                <div>
+
+                    <span class="material-icons">
+                        stars
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Gagne de l'expérience
+                        </strong>
+
+                        <small>
+                            Chaque activité peut te faire progresser.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <span class="material-icons">
+                        assignment
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Accomplis tes missions
+                        </strong>
+
+                        <small>
+                            Trois missions quotidiennes à découvrir.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <span class="material-icons">
+                        groups
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Rejoins ta communauté
+                        </strong>
+
+                        <small>
+                            Discute avec les étudiants de ton établissement.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="auth-footer-text">
+            © 2026 Travail+ — Tous droits réservés.
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         FORMULAIRE INSCRIPTION
+         ================================================= -->
+
+    <section class="auth-form-section">
+
+        <div class="auth-card register-card">
+
+
+            <div class="auth-header">
+
+                <div class="mobile-logo">
+
+                    <a href="index.html" class="logo">
+                        Travail<span>+</span>
+                    </a>
+
+                </div>
+
+                <h2>
+                    Créer ton compte 🚀
+                </h2>
+
+                <p>
+                    Quelques informations pour commencer.
+                </p>
+
+            </div>
+
+
+
+            <form id="registerForm">
+
+
+                <!-- =================================================
+                     PRENOM + NOM
+                     ================================================= -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="firstName">
+                            Prénom
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="material-icons">
+                                person
+                            </span>
+
+                            <input
+                                type="text"
+                                id="firstName"
+                                name="firstName"
+                                placeholder="Ton prénom"
+                                autocomplete="given-name"
+                                required
+                            >
+
+                        </div>
+
+                        <small
+                            class="error-message"
+                            id="firstNameError">
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="lastName">
+                            Nom
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="material-icons">
+                                badge
+                            </span>
+
+                            <input
+                                type="text"
+                                id="lastName"
+                                name="lastName"
+                                placeholder="Ton nom"
+                                autocomplete="family-name"
+                                required
+                            >
+
+                        </div>
+
+                        <small
+                            class="error-message"
+                            id="lastNameError">
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     EMAIL
+                     ================================================= -->
+
+                <div class="form-group">
+
+                    <label for="registerEmail">
+                        Adresse e-mail
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="material-icons">
+                            email
+                        </span>
+
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            name="email"
+                            placeholder="exemple@email.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                    <small
+                        class="error-message"
+                        id="registerEmailError">
+                    </small>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     FACULTE
+                     ================================================= -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="faculty">
+                            Faculté
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="material-icons">
+                                account_balance
+                            </span>
+
+                            <select
+                                id="faculty"
+                                name="faculty"
+                                required>
+
+                                <option value="">
+                                    Choisir une faculté
+                                </option>
+
+                                <option value="FSS">
+                                    Faculté des Sciences de la Santé
+                                </option>
+
+                                <option value="FDS">
+                                    Faculté des Sciences
+                                </option>
+
+                                <option value="FD">
+                                    Faculté de Droit
+                                </option>
+
+                                <option value="FLESH">
+                                    Faculté des Lettres
+                                </option>
+
+                                <option value="FASEG">
+                                    Faculté des Sciences Économiques
+                                </option>
+
+                                <option value="Autre">
+                                    Autre
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <small
+                            class="error-message"
+                            id="facultyError">
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         NIVEAU
+                         ================================================= -->
+
+                    <div class="form-group">
+
+                        <label for="level">
+                            Niveau
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="material-icons">
+                                school
+                            </span>
+
+                            <select
+                                id="level"
+                                name="level"
+                                required>
+
+                                <option value="">
+                                    Choisir ton niveau
+                                </option>
+
+                                <option value="L1">
+                                    Licence 1
+                                </option>
+
+                                <option value="L2">
+                                    Licence 2
+                                </option>
+
+                                <option value="L3">
+                                    Licence 3
+                                </option>
+
+                                <option value="M1">
+                                    Master 1
+                                </option>
+
+                                <option value="M2">
+                                    Master 2
+                                </option>
+
+                                <option value="Doctorat">
+                                    Doctorat
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <small
+                            class="error-message"
+                            id="levelError">
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     DEPARTEMENT
+                     ================================================= -->
+
+                <div class="form-group">
+
+                    <label for="department">
+                        Département
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="material-icons">
+                            account_tree
+                        </span>
+
+                        <input
+                            type="text"
+                            id="department"
+                            name="department"
+                            placeholder="Ex : Informatique"
+                            required
+                        >
+
+                    </div>
+
+                    <small
+                        class="error-message"
+                        id="departmentError">
+                    </small>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     MOT DE PASSE
+                     ================================================= -->
+
+                <div class="form-group">
+
+                    <label for="registerPassword">
+                        Mot de passe
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="material-icons">
+                            lock
+                        </span>
+
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            name="password"
+                            placeholder="Minimum 8 caractères"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="registerPasswordToggle"
+                            aria-label="Afficher le mot de passe">
+
+                            <span class="material-icons">
+                                visibility
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                    <small
+                        class="error-message"
+                        id="registerPasswordError">
+                    </small>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CONFIRMATION MOT DE PASSE
+                     ================================================= -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirmer le mot de passe
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="material-icons">
+                            lock_reset
+                        </span>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Répète ton mot de passe"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="confirmPasswordToggle"
+                            aria-label="Afficher le mot de passe">
+
+                            <span class="material-icons">
+                                visibility
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                    <small
+                        class="error-message"
+                        id="confirmPasswordError">
+                    </small>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CONDITIONS
+                     ================================================= -->
+
+                <div class="terms-row">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            name="terms"
+                            required
+                        >
+
+                        <span>
+                            J'accepte les conditions d'utilisation
+                            de Travail+.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- MESSAGE -->
+                <div
+                    id="registerMessage"
+                    class="login-message">
+                </div>
+
+
+
+                <!-- =================================================
+                     BOUTON
+                     ================================================= -->
+
+                <button
+                    type="submit"
+                    class="auth-submit"
+                    id="registerButton">
+
+                    <span>
+                        Créer mon compte
+                    </span>
+
+                    <span class="material-icons">
+                        arrow_forward
+                    </span>
+
+                </button>
+
+            </form>
+
+
+
+            <!-- =================================================
+                 CONNEXION
+                 ================================================= -->
+
+            <div class="auth-divider">
+                <span>ou</span>
+            </div>
+
+
+            <div class="register-link">
+
+                <span>
+                    Tu as déjà un compte ?
+                </span>
+
+                <a href="login.html">
+                    Se connecter
+                </a>
+
+            </div>
+
+
+            <a
+                href="index.html"
+                class="back-home">
+
+                <span class="material-icons">
+                    arrow_back
+                </span>
+
+                Retour à l'accueil
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="src/register.js"></script>
+
+</body>
+
+</html>
+

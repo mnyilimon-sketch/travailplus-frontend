@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Travail+ — Boutique</title>
+
+    <link rel="stylesheet" href="shop.css">
+</head>
+
+<body>
+
+    <header class="shop-header">
+
+        <div class="header-left">
+
+            <a
+                href="dashboard.html"
+                class="back-link"
+            >
+                ← Tableau de bord
+            </a>
+
+        </div>
+
+
+        <div class="header-center">
+
+            <h1>
+                🛍️ Boutique Travail+
+            </h1>
+
+            <p>
+                Utilise ton XP pour obtenir des récompenses
+            </p>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <a
+                href="shop-history.html"
+                class="history-button"
+            >
+                🛍️ Mes achats
+            </a>
+
+
+            <div class="xp-box">
+
+                <span>⭐</span>
+
+                <strong id="userXp">
+                    0 XP
+                </strong>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="shop-container">
+
+
+        <section class="shop-intro">
+
+            <h2>
+                Récompenses disponibles
+            </h2>
+
+            <p>
+                Échange ton XP contre les récompenses disponibles
+                dans la boutique.
+            </p>
+
+        </section>
+
+
+        <div
+            id="shopMessage"
+            class="shop-message"
+        ></div>
+
+
+        <section
+            id="shopLoading"
+            class="shop-loading"
+        >
+            Chargement de la boutique...
+        </section>
+
+
+        <section
+            id="shopEmpty"
+            class="shop-empty"
+            hidden
+        >
+
+            <div class="empty-icon">
+                🛍️
+            </div>
+
+            <h3>
+                Aucun article disponible
+            </h3>
+
+            <p>
+                De nouvelles récompenses seront bientôt disponibles.
+            </p>
+
+        </section>
+
+
+        <section
+            id="shopGrid"
+            class="shop-grid"
+        ></section>
+
+    </main>
+
+
+    <!-- MODALE D'ACHAT -->
+
+    <div
+        id="purchaseModal"
+        class="modal"
+        hidden
+    >
+
+        <div class="modal-content">
+
+
+            <button
+                id="closeModal"
+                class="modal-close"
+                type="button"
+                aria-label="Fermer"
+            >
+                ×
+            </button>
+
+
+            <div
+                id="modalIcon"
+                class="modal-icon"
+            >
+                🛍️
+            </div>
+
+
+            <h2 id="modalTitle">
+                Acheter cet article ?
+            </h2>
+
+
+            <p id="modalDescription"></p>
+
+
+            <div class="modal-price">
+
+                <span>
+                    ⭐
+                </span>
+
+                <strong id="modalPrice">
+                    0 XP
+                </strong>
+
+            </div>
+
+
+            <div
+                id="modalStock"
+                class="modal-stock"
+            ></div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    id="cancelPurchase"
+                    type="button"
+                    class="btn-secondary"
+                >
+                    Annuler
+                </button>
+
+
+                <button
+                    id="confirmPurchase"
+                    type="button"
+                    class="btn-primary"
+                >
+                    Acheter
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="auth.js"></script>
+
+    <script src="shop.js"></script>
+
+</body>
+
+</html>

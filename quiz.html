@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Travail+ — Quiz</title>
+
+    <link rel="stylesheet" href="quiz.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="logo">
+        Travail<span>+</span>
+    </div>
+
+    <button
+        id="backButton"
+        class="back-button"
+        type="button"
+    >
+        ← Retour
+    </button>
+
+</header>
+
+
+<main class="quiz-page">
+
+    <!-- ==================================================
+         GÉNÉRATEUR DE QUIZ
+    =================================================== -->
+
+    <section
+        id="generatorCard"
+        class="generator-card"
+    >
+
+        <div class="generator-header">
+
+            <h1>🤖 Générer un quiz</h1>
+
+            <p>
+                Crée automatiquement un quiz avec
+                l'intelligence artificielle.
+            </p>
+
+        </div>
+
+
+        <form id="generateQuizForm">
+
+            <div class="form-group">
+
+                <label for="quizTheme">
+                    Thème du quiz
+                </label>
+
+                <input
+                    type="text"
+                    id="quizTheme"
+                    name="theme"
+                    placeholder="Exemple : JavaScript"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="questionCount">
+                        Nombre de questions
+                    </label>
+
+                    <select
+                        id="questionCount"
+                        name="numberOfQuestions"
+                    >
+                        <option value="5">5 questions</option>
+                        <option value="10">10 questions</option>
+                        <option value="15">15 questions</option>
+                        <option value="20">20 questions</option>
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="quizLevel">
+                        Niveau
+                    </label>
+
+                    <select
+                        id="quizLevel"
+                        name="level"
+                    >
+                        <option value="Débutant">
+                            Débutant
+                        </option>
+
+                        <option value="Intermédiaire">
+                            Intermédiaire
+                        </option>
+
+                        <option value="Avancé">
+                            Avancé
+                        </option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="generateQuizButton"
+                class="generate-button"
+                type="submit"
+            >
+                🤖 Générer le quiz
+            </button>
+
+        </form>
+
+
+        <div
+            id="generatorMessage"
+            class="generator-message hidden"
+        ></div>
+
+    </section>
+
+    
+
+
+    <!-- ==================================================
+         CHARGEMENT
+    =================================================== -->
+
+    <div
+        id="quizLoading"
+        class="loading"
+    >
+        Chargement du quiz...
+    </div>
+
+
+    <!-- ==================================================
+         ERREUR
+    =================================================== -->
+
+    <div
+        id="quizError"
+        class="error hidden"
+    ></div>
+
+
+    <!-- ==================================================
+         CONTENU DU QUIZ
+    =================================================== -->
+
+    <section
+        id="quizContent"
+        class="quiz-content hidden"
+    >
+
+        <div class="quiz-header">
+
+            <div>
+
+                <h1 id="quizTitle">
+                    Quiz
+                </h1>
+
+                <p id="quizDescription">
+                    Teste tes connaissances.
+                </p>
+
+            </div>
+
+            <div
+                id="xpReward"
+                class="xp-reward"
+            >
+                +0 XP
+            </div>
+
+        </div>
+
+
+        <div
+            id="questionsContainer"
+            class="questions-container"
+        ></div>
+
+
+        <button
+            id="submitQuizButton"
+            class="submit-button"
+            type="button"
+        >
+            Terminer le quiz
+        </button>
+
+    </section>
+
+
+    <!-- ==================================================
+         RÉSULTAT
+    =================================================== -->
+
+    <section
+        id="resultCard"
+        class="result-card hidden"
+    >
+
+        <h2 id="resultTitle">
+            Résultat
+        </h2>
+
+        <p id="resultMessage"></p>
+
+
+        <div class="result-stats">
+
+            <div class="result-stat">
+
+                <span class="result-label">
+                    Score
+                </span>
+
+                <strong id="resultScore">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="result-stat">
+
+                <span class="result-label">
+                    Bonnes réponses
+                </span>
+
+                <strong id="correctAnswers">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="result-stat">
+
+                <span class="result-label">
+                    XP gagnés
+                </span>
+
+                <strong id="earnedXp">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="backDashboardButton"
+            class="back-dashboard-button"
+            type="button"
+        >
+            Retour au tableau de bord
+        </button>
+
+    </section>
+
+</main>
+
+
+<script src="quiz.js"></script>
+
+</body>
+</html> 

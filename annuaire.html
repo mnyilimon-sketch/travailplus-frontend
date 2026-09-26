@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Annuaire des étudiants - Travail+"
+    >
+
+    <title>Annuaire - Travail+</title>
+
+    <!-- Material Icons -->
+    <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="annuaire.css">
+</head>
+
+<body>
+
+    <!-- ==================================================
+         HEADER
+    ================================================== -->
+
+    <header class="topbar">
+
+        <div class="brand">
+            <span class="brand-icon">
+                <span class="material-icons">
+                    school
+                </span>
+            </span>
+
+            <div class="brand-text">
+                <strong>Travail+</strong>
+                <span>Annuaire</span>
+            </div>
+        </div>
+
+        <nav class="top-actions">
+
+            <button
+                id="themeToggle"
+                class="icon-button"
+                type="button"
+                title="Changer le thème"
+                aria-label="Changer le thème"
+            >
+                <span class="material-icons">
+                    dark_mode
+                </span>
+            </button>
+
+            <button
+                id="logoutButton"
+                class="logout-button"
+                type="button"
+            >
+                <span class="material-icons">
+                    logout
+                </span>
+
+                <span>
+                    Déconnexion
+                </span>
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ==================================================
+         MAIN
+    ================================================== -->
+
+    <main class="page-container">
+
+        <!-- En-tête de page -->
+
+        <section class="page-header">
+
+            <div>
+                <div class="breadcrumb">
+                    <span>Travail+</span>
+                    <span class="material-icons">
+                        chevron_right
+                    </span>
+                    <span>Annuaire</span>
+                </div>
+
+                <h1>
+                    Annuaire des étudiants
+                </h1>
+
+                <p>
+                    Retrouvez facilement les étudiants
+                    de votre établissement.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             FILTRES
+        ================================================== -->
+
+        <section class="filters-card">
+
+            <div class="search-wrapper">
+
+                <span class="material-icons search-icon">
+                    search
+                </span>
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Rechercher un étudiant..."
+                    autocomplete="off"
+                >
+
+                <button
+                    id="clearSearch"
+                    class="clear-search hidden"
+                    type="button"
+                    aria-label="Effacer la recherche"
+                >
+                    <span class="material-icons">
+                        close
+                    </span>
+                </button>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label for="facultyFilter">
+                    Faculté
+                </label>
+
+                <select id="facultyFilter">
+                    <option value="">
+                        Toutes les facultés
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label for="departmentFilter">
+                    Département
+                </label>
+
+                <select id="departmentFilter">
+                    <option value="">
+                        Tous les départements
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label for="levelFilter">
+                    Niveau
+                </label>
+
+                <select id="levelFilter">
+                    <option value="">
+                        Tous les niveaux
+                    </option>
+                </select>
+
+            </div>
+
+
+            <button
+                id="resetFilters"
+                class="reset-button"
+                type="button"
+            >
+                <span class="material-icons">
+                    restart_alt
+                </span>
+
+                Réinitialiser
+            </button>
+
+        </section>
+
+
+        <!-- ==================================================
+             MESSAGE
+        ================================================== -->
+
+        <div
+            id="annuaireMessage"
+            class="message hidden"
+            role="alert"
+        ></div>
+
+
+        <!-- ==================================================
+             STATISTIQUES
+        ================================================== -->
+
+        <section class="results-header">
+
+            <div>
+                <h2>
+                    Étudiants
+                </h2>
+
+                <span
+                    id="studentCount"
+                    class="student-count"
+                >
+                    0 étudiant
+                </span>
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             LOADING
+        ================================================== -->
+
+        <section
+            id="loadingState"
+            class="loading-state hidden"
+        >
+
+            <div class="spinner"></div>
+
+            <p>
+                Chargement des étudiants...
+            </p>
+
+        </section>
+
+
+        <!-- ==================================================
+             EMPTY
+        ================================================== -->
+
+        <section
+            id="emptyState"
+            class="empty-state hidden"
+        >
+
+            <div class="empty-icon">
+
+                <span class="material-icons">
+                    person_search
+                </span>
+
+            </div>
+
+            <h3>
+                Aucun étudiant trouvé
+            </h3>
+
+            <p>
+                Aucun étudiant ne correspond
+                aux critères sélectionnés.
+            </p>
+
+        </section>
+
+
+        <!-- ==================================================
+             STUDENTS
+        ================================================== -->
+
+        <section
+            id="studentsGrid"
+            class="students-grid"
+            aria-live="polite"
+        ></section>
+
+    </main>
+
+
+    <!-- ==================================================
+         MODAL PROFIL
+    ================================================== -->
+
+    <div
+        id="studentModal"
+        class="modal hidden"
+        aria-hidden="true"
+    >
+
+        <div class="modal-overlay"></div>
+
+        <div
+            class="modal-content"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalStudentName"
+        >
+
+            <button
+                id="closeModal"
+                class="modal-close"
+                type="button"
+                aria-label="Fermer"
+            >
+                <span class="material-icons">
+                    close
+                </span>
+            </button>
+
+
+            <!-- Profil -->
+
+            <div class="modal-profile">
+
+                <div
+                    id="modalAvatar"
+                    class="modal-avatar"
+                >
+                    ??
+                </div>
+
+                <h2 id="modalStudentName">
+                    Étudiant
+                </h2>
+
+                <p id="modalStudentEmail">
+                    -
+                </p>
+
+            </div>
+
+
+            <!-- Informations -->
+
+            <div class="modal-info">
+
+                <div class="modal-info-item">
+
+                    <span class="material-icons">
+                        school
+                    </span>
+
+                    <div>
+                        <span class="modal-label">
+                            Faculté
+                        </span>
+
+                        <strong id="modalFaculty">
+                            -
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="modal-info-item">
+
+                    <span class="material-icons">
+                        account_tree
+                    </span>
+
+                    <div>
+                        <span class="modal-label">
+                            Département
+                        </span>
+
+                        <strong id="modalDepartment">
+                            -
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="modal-info-item">
+
+                    <span class="material-icons">
+                        menu_book
+                    </span>
+
+                    <div>
+                        <span class="modal-label">
+                            Niveau académique
+                        </span>
+
+                        <strong id="modalAcademicLevel">
+                            -
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="modal-info-item">
+
+                    <span class="material-icons">
+                        military_tech
+                    </span>
+
+                    <div>
+                        <span class="modal-label">
+                            Niveau Travail+
+                        </span>
+
+                        <strong id="modalGameLevel">
+                            -
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Statistiques -->
+
+            <div class="modal-stats">
+
+                <div class="modal-stat">
+
+                    <span class="material-icons">
+                        stars
+                    </span>
+
+                    <strong id="modalXP">
+                        0 XP
+                    </strong>
+
+                    <span>
+                        Expérience
+                    </span>
+
+                </div>
+
+
+                <div class="modal-stat">
+
+                    <span class="material-icons">
+                        local_fire_department
+                    </span>
+
+                    <strong id="modalStreak">
+                        0 jour
+                    </strong>
+
+                    <span>
+                        Série
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         AUTH
+    ================================================== -->
+
+    <script src="auth.js"></script>
+
+    <!-- ==================================================
+         ANNUAIRE
+    ================================================== -->
+
+    <script src="annuaire.js"></script>
+
+</body>
+</html>

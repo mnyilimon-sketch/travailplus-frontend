@@ -1,0 +1,155 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Travail+ — Missions</title>
+
+    <link
+        rel="stylesheet"
+        href="missions.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+         BARRE DE NAVIGATION
+    ====================================================== -->
+
+    <header class="topbar">
+
+        <div class="logo">
+            Travail<span>+</span>
+        </div>
+
+        <button
+            id="backButton"
+            class="back-btn"
+            type="button"
+        >
+            ← Tableau de bord
+        </button>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTENU PRINCIPAL
+    ====================================================== -->
+
+    <main class="missions-container">
+
+        <!-- En-tête -->
+
+        <section class="missions-header">
+
+            <p class="small-title">
+                TRAVAIL+
+            </p>
+
+            <h1>
+                🎯 Missions quotidiennes
+            </h1>
+
+            <p>
+                Accomplis tes missions et gagne de l'XP.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             STATISTIQUES
+        ================================================== -->
+
+        <section class="mission-stats">
+
+            <div class="mission-stat">
+
+                <span class="stat-label">
+                    Missions
+                </span>
+
+                <strong id="missionCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="mission-stat">
+
+                <span class="stat-label">
+                    Terminées
+                </span>
+
+                <strong id="completedCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="mission-stat">
+
+                <span class="stat-label">
+                    XP gagné
+                </span>
+
+                <strong id="totalXp">
+                    0 XP
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MESSAGE
+        ================================================== -->
+
+        <div
+            id="missionsMessage"
+            class="missions-message"
+        ></div>
+
+
+        <!-- =================================================
+             LISTE DES MISSIONS
+        ================================================== -->
+
+        <section class="missions-section">
+
+            <div
+                id="missionsList"
+                class="missions-list"
+            >
+
+                <div class="loading">
+                    Chargement des missions...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="missions.js"></script>
+
+</body>
+
+</html>

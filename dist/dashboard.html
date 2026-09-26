@@ -1,0 +1,439 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Travail+ — Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="dashboard.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- ==================================================
+         BARRE SUPÉRIEURE
+    ================================================== -->
+
+    <header class="topbar">
+
+        <div class="logo">
+            Travail<span>+</span>
+        </div>
+
+
+        <button
+            id="logoutButton"
+            class="logout-btn"
+            type="button"
+        >
+            Déconnexion
+        </button>
+
+    </header>
+
+
+    <!-- ==================================================
+         TABLEAU DE BORD
+    ================================================== -->
+
+    <main class="dashboard">
+
+
+        <!-- ==================================================
+             BIENVENUE
+        ================================================== -->
+
+        <section class="welcome">
+
+            <p class="small-title">
+                TABLEAU DE BORD
+            </p>
+
+
+            <h1>
+
+                Bienvenue,
+
+                <span id="userName">
+                    Utilisateur
+                </span>
+
+                👋
+
+            </h1>
+
+
+            <p>
+                Continue ton parcours et progresse chaque jour.
+            </p>
+
+        </section>
+
+
+        <!-- ==================================================
+             PROFIL
+        ================================================== -->
+
+        <section class="profile-card">
+
+            <div
+                class="avatar"
+                id="userAvatar"
+            >
+                U
+            </div>
+
+
+            <div class="profile-info">
+
+                <h2 id="profileName">
+                    Utilisateur
+                </h2>
+
+
+                <p>
+
+                    📧
+
+                    <span id="userEmail">
+                        -
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    🎓
+
+                    <span id="userFaculty">
+                        -
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    📚
+
+                    <span id="userDepartment">
+                        -
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <span id="userLevel">
+                        -
+                    </span>
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             STATISTIQUES
+        ================================================== -->
+
+        <section class="stats">
+
+
+            <!-- XP -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⭐
+                </div>
+
+
+                <div>
+
+                    <span>
+                        XP
+                    </span>
+
+
+                    <strong id="userXp">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- STREAK -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔥
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Streak
+                    </span>
+
+
+                    <strong id="userStreak">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             ACCÈS RAPIDE
+        ================================================== -->
+
+        <section class="quick-actions">
+
+
+            <h2>
+                Accès rapide
+            </h2>
+
+
+            <div class="actions">
+
+
+                <!-- ==================================================
+                     COURS
+                ================================================== -->
+
+                <button
+                    class="action-card"
+                    type="button"
+                    data-page="courses.html"
+                >
+
+                    📚
+
+                    <span>
+                        Cours
+                    </span>
+
+                </button>
+
+
+                <!-- ==================================================
+                     EXERCICES
+                ================================================== -->
+
+                <button
+                    class="action-card"
+                    type="button"
+                    data-page="exercises.html"
+                >
+
+                    📝
+
+                    <span>
+                        Exercices
+                    </span>
+
+                </button>
+
+
+                <!-- ==================================================
+                     CLASSEMENT
+                ================================================== -->
+
+                <button
+                    class="action-card"
+                    type="button"
+                    data-page="leaderboard.html"
+                >
+
+                    🏆
+
+                    <span>
+                        Classement
+                    </span>
+
+                </button>
+
+
+                <!-- ==================================================
+                     MISSIONS
+                ================================================== -->
+
+                <button
+                    class="action-card"
+                    type="button"
+                    data-page="missions.html"
+                >
+
+                    🎯
+
+                    <span>
+                        Missions
+                    </span>
+
+                </button>
+
+
+                <!-- ==================================================
+                     QUIZ
+                ================================================== -->
+
+                <button
+                    class="action-card"
+                    type="button"
+                    data-page="quiz.html"
+                >
+
+                    🧠
+
+                    <span>
+                        Quiz
+                    </span>
+
+                </button>
+
+
+                <!-- ==================================================
+                     DOCUMENTS
+                ================================================== -->
+
+                <button
+                    class="action-card"
+                    type="button"
+                    data-page="documents.html"
+                >
+
+                    📚
+
+                    <span>
+                        Documents
+                    </span>
+
+                </button>
+
+
+                <!-- ==================================================
+                     BOUTIQUE
+                ================================================== -->
+
+                <button
+                    class="action-card"
+                    type="button"
+                    data-page="shop.html"
+                >
+
+                    🛍️
+
+                    <span>
+                        Boutique
+                    </span>
+
+                </button>
+
+
+                <!-- ==================================================
+                     MON PROFIL / ANNUAIRE
+                ================================================== -->
+
+                <button
+                    class="action-card"
+                    type="button"
+                    data-page="annuaire.html"
+                >
+
+                    👤
+
+                    <span>
+                        Mon profil
+                    </span>
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ==================================================
+         AUTHENTIFICATION
+    ================================================== -->
+
+    <script src="auth.js"></script>
+
+
+    <!-- ==================================================
+         DASHBOARD
+    ================================================== -->
+
+    <script src="dashboard.js"></script>
+
+
+    <!-- ==================================================
+         NAVIGATION ACCÈS RAPIDE
+    ================================================== -->
+
+    <script>
+
+        document
+            .querySelectorAll(
+                ".action-card[data-page]"
+            )
+            .forEach(
+                (button) => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            const page =
+                                button.dataset.page;
+
+                            if (!page) {
+                                return;
+                            }
+
+                            window.location.href =
+                                page;
+
+                        }
+                    );
+
+                }
+            );
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,3387 @@
+﻿<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<link
+    rel="icon"
+    type="image/svg+xml"
+    href="favicon.svg"
+>
+
+<title>Travail+ Administration</title>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400..700,0..1,0&display=swap"
+    rel="stylesheet"
+>
+
+<link
+    rel="stylesheet"
+    href="admin.css"
+>
+```
+
+</head>
+
+<body>
+
+<!-- ======================================================
+     SIDEBAR
+====================================================== -->
+
+<aside
+    id="adminSidebar"
+    class="admin-sidebar"
+>
+
+```
+<div class="admin-sidebar-header">
+
+    <a
+        href="dashboard.html"
+        class="admin-logo"
+    >
+
+        <span class="admin-logo-mark">
+            T+
+        </span>
+
+        <span>
+            Travail+
+        </span>
+
+    </a>
+
+
+    <button
+        type="button"
+        id="mobileMenuClose"
+        class="admin-mobile-close"
+        aria-label="Fermer le menu"
+    >
+
+        <span class="material-symbols-outlined">
+            close
+        </span>
+
+    </button>
+
+</div>
+
+
+<nav
+    class="admin-navigation"
+    aria-label="Navigation administration"
+>
+
+    <a
+        href="admin.html?section=dashboard"
+        class="admin-nav-item admin-nav-link active"
+        data-section="dashboard"
+    >
+
+        <span class="material-symbols-outlined">
+            dashboard
+        </span>
+
+        <span>
+            Tableau de bord
+        </span>
+
+    </a>
+
+
+    <a
+        href="admin.html?section=students"
+        class="admin-nav-item admin-nav-link"
+        data-section="students"
+    >
+
+        <span class="material-symbols-outlined">
+            school
+        </span>
+
+        <span>
+            Étudiants
+        </span>
+
+    </a>
+
+
+    <a
+        href="admin.html?section=documents"
+        class="admin-nav-item admin-nav-link"
+        data-section="documents"
+    >
+
+        <span class="material-symbols-outlined">
+            description
+        </span>
+
+        <span>
+            Documents
+        </span>
+
+    </a>
+
+
+    <a
+        href="admin.html?section=announcements"
+        class="admin-nav-item admin-nav-link"
+        data-section="announcements"
+    >
+
+        <span class="material-symbols-outlined">
+            campaign
+        </span>
+
+        <span>
+            Annonces
+        </span>
+
+    </a>
+
+
+    <a
+        href="admin.html?section=exercises"
+        class="admin-nav-item admin-nav-link"
+        data-section="exercises"
+    >
+
+        <span class="material-symbols-outlined">
+            quiz
+        </span>
+
+        <span>
+            Exercices
+        </span>
+
+    </a>
+
+
+    <!-- ==================================================
+         COURS
+    ================================================== -->
+
+    <a
+        href="admin.html?section=courses"
+        class="admin-nav-item admin-nav-link"
+        data-section="courses"
+    >
+
+        <span class="material-symbols-outlined">
+            menu_book
+        </span>
+
+        <span>
+            Cours
+        </span>
+
+    </a>
+
+
+    <a
+        href="shop-admin.html"
+        class="admin-nav-item admin-nav-link"
+    >
+
+        <span class="material-symbols-outlined">
+            storefront
+        </span>
+
+        <span>
+            Boutique
+        </span>
+
+    </a>
+
+
+    <a
+        href="admin.html?section=profile"
+        class="admin-nav-item admin-nav-link"
+        data-section="profile"
+    >
+
+        <span class="material-symbols-outlined">
+            account_circle
+        </span>
+
+        <span>
+            Profil
+        </span>
+
+    </a>
+
+</nav>
+
+
+<div class="admin-sidebar-footer">
+
+    <button
+        type="button"
+        id="logoutButton"
+        class="admin-logout-button"
+    >
+
+        <span class="material-symbols-outlined">
+            logout
+        </span>
+
+        <span>
+            Déconnexion
+        </span>
+
+    </button>
+
+</div>
+```
+
+</aside>
+
+<!-- ======================================================
+     MOBILE OVERLAY
+====================================================== -->
+
+<div
+    id="adminSidebarOverlay"
+    class="admin-sidebar-overlay"
+></div>
+
+<!-- ======================================================
+     MAIN
+====================================================== -->
+
+<main class="admin-main">
+
+```
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header class="admin-topbar">
+
+    <div class="admin-topbar-left">
+
+        <button
+            type="button"
+            id="mobileMenuButton"
+            class="admin-mobile-menu"
+            aria-label="Ouvrir le menu"
+        >
+
+            <span class="material-symbols-outlined">
+                menu
+            </span>
+
+        </button>
+
+
+        <div>
+
+            <p class="admin-page-kicker">
+                Administration
+            </p>
+
+            <h1 id="adminPageTitle">
+                Tableau de bord
+            </h1>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-topbar-right">
+
+        <button
+            type="button"
+            id="themeToggle"
+            class="admin-icon-button"
+            aria-label="Changer le thème"
+        >
+
+            <span class="material-symbols-outlined">
+                dark_mode
+            </span>
+
+        </button>
+
+
+        <div class="admin-identity">
+
+            <div
+                id="adminAvatar"
+                class="admin-avatar"
+            >
+                A
+            </div>
+
+            <div>
+
+                <strong id="adminName">
+                    Administrateur
+                </strong>
+
+                <small id="adminEmail"></small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ==================================================
+     STATUS GLOBAL
+================================================== -->
+
+<div
+    id="adminStatusMessage"
+    class="admin-status-message"
+    role="status"
+    aria-live="polite"
+></div>
+
+
+<!-- ==================================================
+     DASHBOARD
+================================================== -->
+
+<section
+    id="dashboardSection"
+    class="admin-section"
+    data-section="dashboard"
+>
+
+    <div class="admin-section-header">
+
+        <div>
+
+            <p class="admin-section-kicker">
+                Vue générale
+            </p>
+
+            <h2>
+                Tableau de bord
+            </h2>
+
+            <p>
+                Suivez l'activité de la plateforme Travail+.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="dashboardStats"
+        class="admin-stats-grid"
+    >
+
+        <a
+            href="admin.html?section=students"
+            class="admin-stat-card"
+        >
+
+            <div class="admin-stat-icon">
+
+                <span class="material-symbols-outlined">
+                    school
+                </span>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Étudiants
+                </span>
+
+                <strong id="totalStudents">
+                    0
+                </strong>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="admin.html?section=documents"
+            class="admin-stat-card"
+        >
+
+            <div class="admin-stat-icon">
+
+                <span class="material-symbols-outlined">
+                    description
+                </span>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Documents
+                </span>
+
+                <strong id="totalDocuments">
+                    0
+                </strong>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="admin.html?section=announcements"
+            class="admin-stat-card"
+        >
+
+            <div class="admin-stat-icon">
+
+                <span class="material-symbols-outlined">
+                    campaign
+                </span>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Annonces
+                </span>
+
+                <strong id="totalAnnouncements">
+                    0
+                </strong>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="admin.html?section=exercises"
+            class="admin-stat-card"
+        >
+
+            <div class="admin-stat-icon">
+
+                <span class="material-symbols-outlined">
+                    quiz
+                </span>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Exercices
+                </span>
+
+                <strong id="totalExercises">
+                    0
+                </strong>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+    <div class="admin-dashboard-grid">
+
+        <section class="admin-card">
+
+            <div class="admin-card-header">
+
+                <div>
+
+                    <h3>
+                        Derniers étudiants
+                    </h3>
+
+                    <p>
+                        Les inscriptions les plus récentes.
+                    </p>
+
+                </div>
+
+                <a
+                    href="admin.html?section=students"
+                    class="admin-secondary-button"
+                >
+                    Voir tout
+                </a>
+
+            </div>
+
+
+            <div
+                id="latestStudents"
+                class="admin-card-content"
+            >
+
+                <div class="admin-empty">
+
+                    <span class="material-symbols-outlined">
+                        school
+                    </span>
+
+                    <strong>
+                        Chargement...
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="admin-card">
+
+            <div class="admin-card-header">
+
+                <div>
+
+                    <h3>
+                        Meilleurs étudiants
+                    </h3>
+
+                    <p>
+                        Classement XP de Travail+.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="topStudents"
+                class="admin-card-content"
+            >
+
+                <div class="admin-empty">
+
+                    <span class="material-symbols-outlined">
+                        emoji_events
+                    </span>
+
+                    <strong>
+                        Chargement...
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     STUDENTS
+================================================== -->
+
+<section
+    id="studentsSection"
+    class="admin-section"
+    data-section="students"
+    hidden
+>
+
+    <div class="admin-section-header">
+
+        <div>
+
+            <p class="admin-section-kicker">
+                Gestion
+            </p>
+
+            <h2>
+                Étudiants
+                <span id="studentsSectionCount" class="admin-section-count">0</span>
+            </h2>
+
+            <p>
+                Gérez les comptes et les informations des étudiants.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-card">
+
+        <div class="admin-search-box">
+
+            <input
+                type="search"
+                id="studentSearch"
+                placeholder="Rechercher un étudiant..."
+                autocomplete="off"
+            >
+
+            <select id="studentFacultyFilter">
+                <option value="">
+                    Toutes les facultés
+                </option>
+            </select>
+
+
+            <select id="studentLevelFilter">
+                <option value="">
+                    Tous les niveaux
+                </option>
+            </select>
+
+
+            <select id="studentStatusFilter">
+
+                <option value="">
+                    Tous les statuts
+                </option>
+
+                <option value="active">
+                    Actifs
+                </option>
+
+                <option value="inactive">
+                    Inactifs
+                </option>
+
+            </select>
+
+
+            <button
+                type="button"
+                id="refreshStudentsButton"
+                class="admin-secondary-button"
+            >
+
+                <span class="material-symbols-outlined">
+                    refresh
+                </span>
+
+                Actualiser
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="studentsLoading"
+            class="admin-empty"
+            hidden
+        >
+
+            <span class="material-symbols-outlined">
+                progress_activity
+            </span>
+
+            <strong>
+                Chargement des étudiants...
+            </strong>
+
+        </div>
+
+
+        <div
+            id="studentsEmpty"
+            class="admin-empty"
+            hidden
+        >
+
+            <span class="material-symbols-outlined">
+                person_off
+            </span>
+
+            <strong>
+                Aucun étudiant
+            </strong>
+
+            <p>
+                Aucun étudiant ne correspond aux critères.
+            </p>
+
+        </div>
+
+
+        <div
+            id="studentsTableContainer"
+            class="table-container"
+        >
+
+            <table class="admin-students-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Étudiant</th>
+                        <th>Faculté</th>
+                        <th>Niveau</th>
+                        <th>XP</th>
+                        <th>Streak</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="studentsTableBody"></tbody>
+
+            </table>
+
+        </div>
+
+
+        <div
+            id="studentsPagination"
+            class="admin-pagination"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     DOCUMENTS
+================================================== -->
+
+<section
+    id="documentsSection"
+    class="admin-section"
+    data-section="documents"
+    hidden
+>
+
+    <div class="admin-section-header">
+
+        <div>
+
+            <p class="admin-section-kicker">
+                Ressources
+            </p>
+
+            <h2>
+                Documents
+                <span id="documentsSectionCount" class="admin-section-count">0</span>
+            </h2>
+
+            <p>
+                Gérez les documents disponibles pour les étudiants.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-card">
+
+        <div
+            id="documentsLoading"
+            class="admin-empty"
+            hidden
+        >
+
+            <span class="material-symbols-outlined">
+                progress_activity
+            </span>
+
+            <strong>
+                Chargement des documents...
+            </strong>
+
+        </div>
+
+
+        <div
+            id="documentsEmpty"
+            class="admin-empty"
+            hidden
+        >
+
+            <span class="material-symbols-outlined">
+                folder_off
+            </span>
+
+            <strong>
+                Aucun document
+            </strong>
+
+        </div>
+
+
+        <div
+            id="documentsTableContainer"
+            class="table-container"
+        >
+
+            <table class="admin-students-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Document</th>
+                        <th>Type</th>
+                        <th>Auteur</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="documentsTableBody"></tbody>
+
+            </table>
+
+        </div>
+
+
+        <div
+            id="documentsPagination"
+            class="admin-pagination"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     ANNOUNCEMENTS
+================================================== -->
+
+<section
+    id="announcementsSection"
+    class="admin-section"
+    data-section="announcements"
+    hidden
+>
+
+    <div class="admin-section-header">
+
+        <div>
+
+            <p class="admin-section-kicker">
+                Communication
+            </p>
+
+            <h2>
+                Annonces
+                <span id="announcementsSectionCount" class="admin-section-count">0</span>
+            </h2>
+
+            <p>
+                Publiez et gérez les annonces destinées aux étudiants.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="createAnnouncementButton"
+            class="admin-primary-button"
+        >
+
+            <span class="material-symbols-outlined">
+                add
+            </span>
+
+            Nouvelle annonce
+
+        </button>
+
+    </div>
+
+
+    <div class="admin-card">
+
+        <div
+            id="announcementsLoading"
+            class="admin-empty"
+            hidden
+        >
+
+            <span class="material-symbols-outlined">
+                progress_activity
+            </span>
+
+            <strong>
+                Chargement des annonces...
+            </strong>
+
+        </div>
+
+
+        <div
+            id="announcementsEmpty"
+            class="admin-empty"
+            hidden
+        >
+
+            <span class="material-symbols-outlined">
+                campaign
+            </span>
+
+            <strong>
+                Aucune annonce
+            </strong>
+
+        </div>
+
+
+        <div
+            id="announcementsTableContainer"
+            class="table-container"
+        >
+
+            <table class="admin-students-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Titre</th>
+                        <th>Auteur</th>
+                        <th>Date</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="announcementsTableBody"></tbody>
+
+            </table>
+
+        </div>
+
+
+        <div
+            id="announcementsPagination"
+            class="admin-pagination"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     EXERCISES
+================================================== -->
+
+<section
+    id="exercisesSection"
+    class="admin-section"
+    data-section="exercises"
+    hidden
+>
+
+    <div class="admin-section-header">
+
+        <div>
+
+            <p class="admin-section-kicker">
+                Gamification
+            </p>
+
+            <h2>
+                Exercices
+                <span id="exercisesSectionCount" class="admin-section-count">0</span>
+            </h2>
+
+            <p>
+                Créez, générez et gérez les exercices proposés aux étudiants.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="createExerciseButton"
+            class="admin-primary-button"
+        >
+
+            <span class="material-symbols-outlined">
+                add
+            </span>
+
+            Nouvel exercice
+
+        </button>
+
+    </div>
+
+
+    <div class="admin-card">
+
+        <div class="admin-card-header">
+
+            <div>
+
+                <h3>
+                    Exercices disponibles
+                </h3>
+
+                <p>
+                    Les exercices actifs apparaissent ici.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="refreshExercisesButton"
+                class="admin-secondary-button"
+            >
+
+                <span class="material-symbols-outlined">
+                    refresh
+                </span>
+
+                Actualiser
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="exercisesLoading"
+            class="admin-empty"
+            hidden
+        >
+
+            <span class="material-symbols-outlined">
+                progress_activity
+            </span>
+
+            <strong>
+                Chargement des exercices...
+            </strong>
+
+        </div>
+
+
+        <div
+            id="exercisesEmpty"
+            class="admin-empty"
+            hidden
+        >
+
+            <span class="material-symbols-outlined">
+                quiz
+            </span>
+
+            <strong>
+                Aucun exercice
+            </strong>
+
+            <p>
+                Créez votre premier exercice ou utilisez la génération IA.
+            </p>
+
+        </div>
+
+
+        <div
+            id="exercisesTableContainer"
+            class="table-container"
+            hidden
+        >
+
+            <table class="admin-students-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Exercice</th>
+                        <th>Matière</th>
+                        <th>Niveau</th>
+                        <th>Questions</th>
+                        <th>XP</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="exercisesTableBody"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     COURS
+================================================== -->
+
+<section
+    id="coursesSection"
+    class="admin-section"
+    data-section="courses"
+    hidden
+>
+
+    <div class="admin-section-header">
+
+        <div>
+
+            <p class="admin-section-kicker">
+                Formation
+            </p>
+
+            <h2>
+                Gestion des cours
+                <span id="coursesSectionCount" class="admin-section-count">0</span>
+            </h2>
+
+            <p>
+                Ajoutez, générez avec l'IA et gérez les cours pédagogiques de Travail+.
+            </p>
+
+        </div>
+
+
+        <div class="admin-section-actions">
+
+            <button
+                type="button"
+                class="admin-primary-button"
+                id="newCourseButton"
+            >
+                Ajouter un cours
+            </button>
+
+
+            <button
+                type="button"
+                class="admin-secondary-button"
+                id="generateCourseButton"
+            >
+                Générer avec l'IA
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="courseAdminMessage"
+        class="admin-status-message"
+        hidden
+    ></div>
+
+
+    <!-- ==================================================
+         FILTRES
+    ================================================== -->
+
+    <div class="admin-card course-filters">
+
+        <div class="admin-card-header">
+
+            <div>
+
+                <h3>
+                    Filtrer les cours
+                </h3>
+
+                <p>
+                    Recherchez les cours selon leur contexte académique.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-form-group course-search-group">
+
+            <label for="courseSearch">
+                Rechercher un cours
+            </label>
+
+            <input
+                type="search"
+                id="courseSearch"
+                placeholder="Ex. développement web, Python, réseau..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="course-filter-grid">
+
+            <div class="admin-form-group">
+
+                <label for="courseFilterFaculty">
+                    Faculté
+                </label>
+
+                <input
+                    type="text"
+                    id="courseFilterFaculty"
+                    placeholder="Ex. FDS"
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="courseFilterDepartment">
+                    Département
+                </label>
+
+                <input
+                    type="text"
+                    id="courseFilterDepartment"
+                    placeholder="Ex. Informatique"
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="courseFilterLevel">
+                    Niveau
+                </label>
+
+                <input
+                    type="text"
+                    id="courseFilterLevel"
+                    placeholder="Ex. Licence 1"
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="courseFilterTheme">
+                    Thème
+                </label>
+
+                <select id="courseFilterTheme">
+
+                    <option value="">
+                        Tous les thèmes
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="course-filter-actions">
+
+            <button
+                type="button"
+                class="admin-primary-button"
+                id="courseFilterButton"
+            >
+                Filtrer
+            </button>
+
+
+            <button
+                type="button"
+                class="admin-secondary-button"
+                id="courseResetFilters"
+            >
+                Réinitialiser
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         TABLE COURS
+    ================================================== -->
+
+    <div class="admin-card">
+
+        <div
+            id="coursesAdminLoading"
+            class="admin-loading"
+            hidden
+        >
+            Chargement des cours...
+        </div>
+
+
+        <div
+            id="coursesAdminEmpty"
+            class="admin-empty"
+            hidden
+        >
+
+            <div class="admin-empty-icon">
+                menu_book
+            </div>
+
+            <h3>
+                Aucun cours
+            </h3>
+
+            <p>
+                Aucun cours ne correspond aux critères sélectionnés.
+            </p>
+
+            <button
+                type="button"
+                class="admin-primary-button"
+                id="emptyNewCourseButton"
+            >
+                Ajouter un cours
+            </button>
+
+        </div>
+
+
+        <div
+            id="coursesAdminTableContainer"
+            class="admin-table-container"
+            hidden
+        >
+
+            <table class="admin-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Titre</th>
+                        <th>Thème</th>
+                        <th>Faculté</th>
+                        <th>Département</th>
+                        <th>Niveau</th>
+                        <th>Statut</th>
+                        <th>Création</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="coursesAdminTableBody"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     PROFILE
+================================================== -->
+
+<section
+    id="profileSection"
+    class="admin-section"
+    data-section="profile"
+    hidden
+>
+
+    <div class="admin-section-header">
+
+        <div>
+
+            <p class="admin-section-kicker">
+                Compte
+            </p>
+
+            <h2>
+                Profil administrateur
+            </h2>
+
+            <p>
+                Consultez les informations de votre compte administrateur.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-card">
+
+        <div class="admin-profile">
+
+            <div
+                id="profileAvatar"
+                class="admin-profile-avatar"
+            >
+                A
+            </div>
+
+
+            <div class="admin-profile-info">
+
+                <h3 id="profileName">
+                    Administrateur
+                </h3>
+
+                <p id="profileEmail"></p>
+
+                <span
+                    id="profileRole"
+                    class="admin-status info"
+                >
+                    Administrateur
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-form-grid">
+
+            <div class="admin-form-group">
+
+                <label for="profileFirstName">
+                    Prénom
+                </label>
+
+                <input
+                    type="text"
+                    id="profileFirstName"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="profileLastName">
+                    Nom
+                </label>
+
+                <input
+                    type="text"
+                    id="profileLastName"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="admin-form-group full">
+
+                <label for="profileEmailInput">
+                    Adresse e-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="profileEmailInput"
+                    readonly
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+```
+
+</main>
+
+<!-- ======================================================
+     MODAL ÉTUDIANT
+====================================================== -->
+
+<div
+    id="studentModal"
+    class="admin-modal"
+    hidden
+    aria-hidden="true"
+>
+
+```
+<div class="admin-modal-content">
+
+    <div class="admin-modal-header">
+
+        <div>
+
+            <h3 id="studentModalTitle">
+                Modifier l'étudiant
+            </h3>
+
+            <p>
+                Modifiez les informations du compte étudiant.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="studentModalClose"
+            class="admin-modal-close"
+            aria-label="Fermer"
+        >
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <form
+        id="studentForm"
+        class="admin-student-form"
+    >
+
+        <input
+            type="hidden"
+            id="studentId"
+        >
+
+
+        <div class="admin-form-grid">
+
+            <div class="admin-form-group">
+
+                <label for="studentFirstName">
+                    Prénom
+                </label>
+
+                <input
+                    type="text"
+                    id="studentFirstName"
+                    required
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="studentLastName">
+                    Nom
+                </label>
+
+                <input
+                    type="text"
+                    id="studentLastName"
+                    required
+                >
+
+            </div>
+
+
+            <div class="admin-form-group full">
+
+                <label for="studentEmail">
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="studentEmail"
+                    required
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="studentFaculty">
+                    Faculté
+                </label>
+
+                <input
+                    type="text"
+                    id="studentFaculty"
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="studentDepartment">
+                    Département
+                </label>
+
+                <input
+                    type="text"
+                    id="studentDepartment"
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="studentLevel">
+                    Niveau
+                </label>
+
+                <input
+                    type="text"
+                    id="studentLevel"
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="studentXP">
+                    XP
+                </label>
+
+                <input
+                    type="number"
+                    id="studentXP"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="admin-form-group full">
+
+                <label class="admin-form-checkbox">
+
+                    <input
+                        type="checkbox"
+                        id="studentIsActive"
+                    >
+
+                    <span>
+                        Compte actif
+                    </span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-form-warning">
+
+            Les modifications effectuées ici sont appliquées directement
+            au compte de l'étudiant.
+
+        </div>
+
+
+        <div class="admin-modal-actions">
+
+            <button
+                type="button"
+                id="studentModalCancel"
+                class="admin-secondary-button"
+            >
+                Annuler
+            </button>
+
+
+            <button
+                type="submit"
+                id="studentSaveButton"
+                class="admin-primary-button"
+            >
+
+                <span class="material-symbols-outlined">
+                    save
+                </span>
+
+                Enregistrer
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+```
+
+</div>
+
+<!-- ======================================================
+     MODAL ANNONCE
+====================================================== -->
+
+<div
+    id="announcementModal"
+    class="admin-modal"
+    hidden
+    aria-hidden="true"
+>
+
+```
+<div class="admin-modal-content">
+
+    <div class="admin-modal-header">
+
+        <div>
+
+            <h3 id="announcementModalTitle">
+                Nouvelle annonce
+            </h3>
+
+            <p>
+                Publiez une information pour les étudiants.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="announcementModalClose"
+            class="admin-modal-close"
+            aria-label="Fermer"
+        >
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <form
+        id="announcementForm"
+        class="admin-student-form"
+    >
+
+        <input
+            type="hidden"
+            id="announcementId"
+        >
+
+
+        <div class="admin-form-grid">
+
+            <div class="admin-form-group full">
+
+                <label for="announcementTitle">
+                    Titre
+                </label>
+
+                <input
+                    type="text"
+                    id="announcementTitle"
+                    required
+                >
+
+            </div>
+
+
+            <div class="admin-form-group full">
+
+                <label for="announcementContent">
+                    Contenu
+                </label>
+
+                <textarea
+                    id="announcementContent"
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="admin-form-group full">
+
+                <label class="admin-form-checkbox">
+
+                    <input
+                        type="checkbox"
+                        id="announcementIsActive"
+                        checked
+                    >
+
+                    <span>
+                        Publier cette annonce
+                    </span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-modal-actions">
+
+            <button
+                type="button"
+                id="announcementModalCancel"
+                class="admin-secondary-button"
+            >
+                Annuler
+            </button>
+
+
+            <button
+                type="submit"
+                id="announcementSaveButton"
+                class="admin-primary-button"
+            >
+
+                <span class="material-symbols-outlined">
+                    save
+                </span>
+
+                Enregistrer
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+```
+
+</div>
+
+<!-- ======================================================
+     MODAL EXERCICE
+====================================================== -->
+
+<div
+    id="exerciseModal"
+    class="admin-modal"
+    hidden
+    aria-hidden="true"
+>
+
+```
+<div class="admin-modal-content">
+
+    <div class="admin-modal-header">
+
+        <div>
+
+            <h3 id="exerciseModalTitle">
+                Nouvel exercice
+            </h3>
+
+            <p>
+                Créez un exercice pour les étudiants.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="exerciseModalClose"
+            class="admin-modal-close"
+            aria-label="Fermer"
+        >
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <form
+        id="exerciseForm"
+        class="admin-student-form"
+    >
+
+        <div class="admin-form-grid">
+
+            <div class="admin-form-group full">
+
+                <label for="exerciseTitle">
+                    Titre
+                </label>
+
+                <input
+                    type="text"
+                    id="exerciseTitle"
+                    placeholder="Ex. Introduction à l'économie"
+                    required
+                >
+
+            </div>
+
+
+            <div class="admin-form-group full">
+
+                <label for="exerciseDescription">
+                    Description
+                </label>
+
+                <textarea
+                    id="exerciseDescription"
+                    placeholder="Décrivez l'exercice..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="exerciseSubject">
+                    Matière
+                </label>
+
+                <input
+                    type="text"
+                    id="exerciseSubject"
+                    placeholder="Ex. Mathématiques"
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="exerciseLevel">
+                    Niveau
+                </label>
+
+                <input
+                    type="text"
+                    id="exerciseLevel"
+                    placeholder="Ex. Licence 1"
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="exerciseXP">
+                    Récompense XP
+                </label>
+
+                <input
+                    type="number"
+                    id="exerciseXP"
+                    value="10"
+                    min="1"
+                    required
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="exerciseQuestionCount">
+                    Nombre de questions
+                </label>
+
+                <input
+                    type="number"
+                    id="exerciseQuestionCount"
+                    value="5"
+                    min="1"
+                    max="50"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-form-warning">
+
+            Vous pourrez générer automatiquement les questions avec
+            l'intelligence artificielle depuis la gestion des exercices.
+
+        </div>
+
+
+        <div class="admin-modal-actions">
+
+            <button
+                type="button"
+                id="exerciseModalCancel"
+                class="admin-secondary-button"
+            >
+                Annuler
+            </button>
+
+
+            <button
+                type="submit"
+                id="exerciseSaveButton"
+                class="admin-primary-button"
+            >
+
+                <span class="material-symbols-outlined">
+                    save
+                </span>
+
+                Créer l'exercice
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+```
+
+</div>
+
+<!-- ======================================================
+     MODALE AJOUT / MODIFICATION COURS
+====================================================== -->
+
+<div
+    id="courseFormModal"
+    class="admin-modal"
+    hidden
+    aria-hidden="true"
+>
+
+```
+<div class="admin-modal-overlay"></div>
+
+
+<div
+    class="admin-modal-content"
+    role="dialog"
+    aria-modal="true"
+>
+
+    <div class="admin-modal-header">
+
+        <div>
+
+            <h2 id="courseFormModalTitle">
+                Ajouter un cours
+            </h2>
+
+            <p>
+                Créez ou modifiez un cours pédagogique.
+            </p>
+
+        </div>
+
+
+        <div class="admin-form-group">
+
+            <label for="courseFiles">
+                Fichiers du cours
+            </label>
+
+            <input
+                type="file"
+                id="courseFiles"
+                name="courseFiles"
+                multiple
+            >
+
+            <small>
+                Images, PDF, Word, vidéos, documents, etc.
+            </small>
+
+            <div id="selectedCourseFiles"></div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="admin-modal-close"
+            id="closeCourseFormModal"
+            aria-label="Fermer"
+        >
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <form id="courseForm">
+
+        <input
+            type="hidden"
+            id="courseId"
+        >
+
+
+        <div class="course-form-grid">
+
+            <div class="admin-form-group">
+
+                <label for="courseTitle">
+                    Titre *
+                </label>
+
+                <input
+                    type="text"
+                    id="courseTitle"
+                    required
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="courseTheme">
+                    Thème *
+                </label>
+
+                <input
+                    type="text"
+                    id="courseTheme"
+                    required
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="courseFaculty">
+                    Faculté *
+                </label>
+
+                <input
+                    type="text"
+                    id="courseFaculty"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ==================================================
+                 AJOUT CORRECTION :
+                 LE JAVASCRIPT COURSES-ADMIN.JS UTILISE
+                 courseDepartment
+            ================================================== -->
+
+            <div class="admin-form-group">
+
+                <label for="courseDepartment">
+                    Département *
+                </label>
+
+                <input
+                    type="text"
+                    id="courseDepartment"
+                    name="courseDepartment"
+                    placeholder="Ex. Informatique"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ==================================================
+                 CODE INITIAL CONSERVÉ
+            ================================================== -->
+
+            <div class="admin-form-group">
+
+                <label for="courseEducationLevel">
+                    Type d’enseignement *
+                </label>
+
+                <select
+                    id="courseEducationLevel"
+                    required
+                >
+
+                    <option value="">
+                        Sélectionner
+                    </option>
+
+                    <option value="college">
+                        Collège
+                    </option>
+
+                    <option value="secondaire">
+                        Secondaire
+                    </option>
+
+                    <option value="universite">
+                        Université
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="courseLevel">
+                    Classe / Niveau *
+                </label>
+
+                <select
+                    id="courseLevel"
+                    required
+                >
+
+                    <option value="">
+                        Sélectionner d’abord le type
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="admin-form-group">
+
+            <label for="courseDescription">
+                Description
+            </label>
+
+            <textarea
+                id="courseDescription"
+                rows="4"
+            ></textarea>
+
+        </div>
+
+
+        <div class="admin-form-group">
+
+            <label for="courseObjectives">
+                Objectifs pédagogiques
+            </label>
+
+            <textarea
+                id="courseObjectives"
+                rows="6"
+                placeholder="Un objectif par ligne"
+            ></textarea>
+
+        </div>
+
+
+        <div class="admin-form-group">
+
+            <label for="courseContent">
+                Contenu du cours *
+            </label>
+
+            <textarea
+                id="courseContent"
+                rows="18"
+                required
+                placeholder="Contenu complet du cours..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="admin-modal-footer">
+
+            <button
+                type="button"
+                class="admin-secondary-button"
+                id="cancelCourseForm"
+            >
+                Annuler
+            </button>
+
+
+            <button
+                type="submit"
+                class="admin-primary-button"
+                id="saveCourseButton"
+            >
+
+                <span class="material-symbols-outlined">
+                    save
+                </span>
+
+                Enregistrer
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+```
+
+</div>
+
+<!-- ======================================================
+     MODALE GÉNÉRATION IA COURS
+====================================================== -->
+
+<div
+    id="generateCourseModal"
+    class="admin-modal"
+    hidden
+    aria-hidden="true"
+>
+
+```
+<div class="admin-modal-overlay"></div>
+
+<div
+    class="admin-modal-content"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="generateCourseModalTitle"
+>
+
+    <div class="admin-modal-header">
+
+        <div>
+
+            <h2 id="generateCourseModalTitle">
+                Générer un cours avec l'IA
+            </h2>
+
+            <p>
+                L'IA prépare le cours à partir du thème
+                et du contexte académique.
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            class="admin-modal-close"
+            id="closeGenerateCourseModal"
+            aria-label="Fermer"
+        >
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <form id="generateCourseForm">
+
+        <div
+            id="courseAiMessage"
+            class="admin-status-message"
+            hidden
+            role="status"
+            aria-live="polite"
+        ></div>
+
+
+        <div class="course-form-grid">
+
+            <div class="admin-form-group">
+
+                <label for="courseAiTheme">
+                    Thème *
+                </label>
+
+                <input
+                    type="text"
+                    id="courseAiTheme"
+                    placeholder="Ex. Algorithmes de tri"
+                    required
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="courseAiSubject">
+                    Matière
+                </label>
+
+                <input
+                    type="text"
+                    id="courseAiSubject"
+                    placeholder="Ex. Algorithmique"
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="courseAiFaculty">
+                    Faculté *
+                </label>
+
+                <input
+                    type="text"
+                    id="courseAiFaculty"
+                    placeholder="Ex. FDS"
+                    required
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="courseAiDepartment">
+                    Département *
+                </label>
+
+                <input
+                    type="text"
+                    id="courseAiDepartment"
+                    placeholder="Ex. Informatique"
+                    required
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="courseAiLevel">
+                    Niveau *
+                </label>
+
+                <input
+                    type="text"
+                    id="courseAiLevel"
+                    placeholder="Ex. Licence 1"
+                    required
+                >
+
+            </div>
+
+
+            <div class="admin-form-group">
+
+                <label for="courseAiLanguage">
+                    Langue
+                </label>
+
+                <select id="courseAiLanguage">
+
+                    <option value="français">
+                        Français
+                    </option>
+
+                    <option value="anglais">
+                        English
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-form-group">
+
+            <label for="courseAiInstructions">
+                Instructions supplémentaires
+            </label>
+
+            <textarea
+                id="courseAiInstructions"
+                rows="6"
+                placeholder="Ex. Ajouter des exemples pratiques et des exercices d'application."
+            ></textarea>
+
+        </div>
+
+
+        <div class="admin-modal-footer">
+
+            <button
+                type="button"
+                class="admin-secondary-button"
+                id="cancelGenerateCourse"
+            >
+                Annuler
+            </button>
+
+
+            <button
+                type="submit"
+                class="admin-primary-button"
+                id="generateCourseSubmit"
+            >
+                Générer le cours
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+```
+
+</div>
+
+<!-- ======================================================
+     MODALE APERÇU DU COURS GÉNÉRÉ PAR IA
+====================================================== -->
+
+<div
+    id="generatedCoursePreviewModal"
+    class="admin-modal"
+    hidden
+    aria-hidden="true"
+>
+
+```
+<div class="admin-modal-overlay"></div>
+
+
+<div
+    class="admin-modal-content course-preview-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="generatedCoursePreviewTitle"
+>
+
+    <div class="admin-modal-header">
+
+        <div>
+
+            <h2 id="generatedCoursePreviewTitle">
+                Aperçu du cours généré
+            </h2>
+
+            <p>
+                Vérifiez le contenu avant d'enregistrer le cours.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="admin-modal-close"
+            id="closeGeneratedCoursePreview"
+            aria-label="Fermer"
+        >
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="generatedCourseMessage"
+        class="admin-status-message"
+        hidden
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+    <div class="generated-course-preview">
+
+        <div class="course-preview-block">
+
+            <span class="course-preview-label">
+                TITRE DU COURS
+            </span>
+
+            <h3 id="generatedCourseTitle">
+                —
+            </h3>
+
+        </div>
+
+
+        <div class="course-preview-block">
+
+            <span class="course-preview-label">
+                THÈME
+            </span>
+
+            <p id="generatedCourseTheme">
+                —
+            </p>
+
+        </div>
+
+
+        <div class="course-preview-block">
+
+            <span class="course-preview-label">
+                DESCRIPTION
+            </span>
+
+            <p id="generatedCourseDescription">
+                —
+            </p>
+
+        </div>
+
+
+        <div class="course-preview-grid">
+
+            <div class="course-preview-block">
+
+                <span class="course-preview-label">
+                    FACULTÉ
+                </span>
+
+                <p id="generatedCourseFaculty">
+                    —
+                </p>
+
+            </div>
+
+
+            <div class="course-preview-block">
+
+                <span class="course-preview-label">
+                    DÉPARTEMENT
+                </span>
+
+                <p id="generatedCourseDepartment">
+                    —
+                </p>
+
+            </div>
+
+
+            <div class="course-preview-block">
+
+                <span class="course-preview-label">
+                    NIVEAU
+                </span>
+
+                <p id="generatedCourseLevel">
+                    —
+                </p>
+
+            </div>
+
+
+            <div class="course-preview-block">
+
+                <span class="course-preview-label">
+                    TYPE
+                </span>
+
+                <p>
+                    <span class="course-ai-badge">
+                        Généré par IA
+                    </span>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="course-preview-block">
+
+            <span class="course-preview-label">
+                OBJECTIFS PÉDAGOGIQUES
+            </span>
+
+            <div
+                id="generatedCourseObjectives"
+                class="generated-course-objectives"
+            ></div>
+
+        </div>
+
+
+        <div class="course-preview-block">
+
+            <span class="course-preview-label">
+                CONTENU DU COURS
+            </span>
+
+            <div
+                id="generatedCourseContent"
+                class="generated-course-content"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-modal-actions">
+
+        <button
+            type="button"
+            class="admin-secondary-button"
+            id="editGeneratedCourse"
+        >
+            Modifier
+        </button>
+
+
+        <button
+            type="button"
+            class="admin-primary-button"
+            id="saveGeneratedCourse"
+        >
+            Enregistrer le cours
+        </button>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- ======================================================
+     ANCIENNE MODALE PRÉVISUALISATION
+     CONSERVÉE POUR COMPATIBILITÉ
+====================================================== -->
+
+<div
+    id="coursePreviewModal"
+    class="admin-modal"
+    hidden
+    aria-hidden="true"
+>
+
+```
+<div class="admin-modal-overlay"></div>
+
+
+<div
+    class="admin-modal-content course-preview-modal-content"
+    role="dialog"
+    aria-modal="true"
+>
+
+    <div class="admin-modal-header">
+
+        <div>
+
+            <h2>
+                Prévisualisation du cours
+            </h2>
+
+            <p>
+                Vérifiez le contenu avant l'enregistrement.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="admin-modal-close"
+            id="closeCoursePreviewModal"
+            aria-label="Fermer"
+        >
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="coursePreviewContent"
+        class="course-preview-content"
+    ></div>
+
+
+    <div class="admin-modal-footer">
+
+        <button
+            type="button"
+            class="admin-secondary-button"
+            id="cancelCoursePreview"
+        >
+            Fermer
+        </button>
+
+
+        <button
+            type="button"
+            class="admin-secondary-button"
+            id="editGeneratedCourseButton"
+        >
+            Modifier
+        </button>
+
+
+        <button
+            type="button"
+            class="admin-primary-button"
+            id="saveGeneratedCourseButton"
+        >
+            Enregistrer le cours
+        </button>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- ======================================================
+     SCRIPTS INITIAUX CONSERVÉS
+====================================================== -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const generateButton =
+        document.getElementById("generateCourseButton");
+
+    const generateModal =
+        document.getElementById("generateCourseModal");
+
+    const cancelButton =
+        document.getElementById("cancelGenerateCourse");
+
+    const closeButton =
+        document.getElementById("closeGenerateCourseModal");
+
+    if (!generateButton) {
+        console.error(
+            "Travail+ : #generateCourseButton introuvable."
+        );
+        return;
+    }
+
+    if (!generateModal) {
+        console.error(
+            "Travail+ : #generateCourseModal introuvable."
+        );
+        return;
+    }
+
+
+    function openGenerateCourseModal() {
+
+        generateModal.hidden = false;
+
+        generateModal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        generateModal.classList.add("active");
+
+        generateModal.style.display = "flex";
+
+        const themeInput =
+            document.getElementById("courseAiTheme");
+
+        if (themeInput) {
+            setTimeout(function () {
+                themeInput.focus();
+            }, 50);
+        }
+    }
+
+
+    function closeGenerateCourseModal() {
+
+        if (
+            generateModal.contains(document.activeElement) &&
+            generateButton
+        ) {
+            generateButton.focus();
+        }
+
+        generateModal.hidden = true;
+
+        generateModal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        generateModal.classList.remove("active");
+
+        generateModal.style.display = "none";
+    }
+
+
+    generateButton.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            openGenerateCourseModal();
+        }
+    );
+
+
+    if (cancelButton) {
+
+        cancelButton.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                closeGenerateCourseModal();
+            }
+        );
+
+    }
+
+
+    if (closeButton) {
+
+        closeButton.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                closeGenerateCourseModal();
+            }
+        );
+
+    }
+
+
+    const generateOverlay =
+        generateModal.querySelector(
+            ".admin-modal-overlay"
+        );
+
+    if (generateOverlay) {
+
+        generateOverlay.addEventListener(
+            "click",
+            function () {
+
+                closeGenerateCourseModal();
+            }
+        );
+
+    }
+
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                !generateModal.hidden
+            ) {
+
+                closeGenerateCourseModal();
+
+            }
+
+        }
+    );
+
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const modal =
+        document.getElementById("courseFormModal");
+
+    const form =
+        document.getElementById("courseForm");
+
+    if (!modal) return;
+
+    const ouvrirModal = event => {
+
+        event?.preventDefault();
+
+        form?.reset();
+
+        document.getElementById("courseId").value = "";
+
+        document.getElementById(
+            "courseFormModalTitle"
+        ).textContent =
+            "Ajouter un cours";
+
+        modal.hidden = false;
+
+        modal.style.display = "flex";
+
+        modal.classList.add("active");
+
+        modal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        document.getElementById(
+            "courseTitle"
+        )?.focus();
+
+    };
+
+
+    const fermerModal = () => {
+
+        modal.hidden = true;
+
+        modal.style.display = "none";
+
+        modal.classList.remove("active");
+
+        modal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    };
+
+
+    document
+        .getElementById("newCourseButton")
+        ?.addEventListener(
+            "click",
+            ouvrirModal
+        );
+
+
+    document
+        .getElementById("emptyNewCourseButton")
+        ?.addEventListener(
+            "click",
+            ouvrirModal
+        );
+
+
+    document
+        .getElementById("closeCourseFormModal")
+        ?.addEventListener(
+            "click",
+            fermerModal
+        );
+
+
+    document
+        .getElementById("cancelCourseForm")
+        ?.addEventListener(
+            "click",
+            fermerModal
+        );
+
+
+    modal
+        .querySelector(".admin-modal-overlay")
+        ?.addEventListener(
+            "click",
+            fermerModal
+        );
+
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Escape" &&
+                !modal.hidden
+            ) {
+
+                fermerModal();
+
+            }
+
+        }
+    );
+
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const input =
+        document.getElementById("courseFiles");
+
+    const list =
+        document.getElementById(
+            "selectedCourseFiles"
+        );
+
+    if (!input || !list) return;
+
+    input.addEventListener(
+        "change",
+        () => {
+
+            list.innerHTML = "";
+
+            [...input.files].forEach(
+                file => {
+
+                    const item =
+                        document.createElement(
+                            "p"
+                        );
+
+                    item.textContent =
+                        `${file.name} (${Math.ceil(
+                            file.size / 1024
+                        )} Ko)`;
+
+                    list.appendChild(item);
+
+                }
+            );
+
+        }
+    );
+
+});
+</script>
+
+<script src="auth.js"></script>
+
+<script src="admin.js"></script>
+
+<script src="courses-admin.js"></script>
+
+<script src="course-ai.js"></script>
+
+<!-- ======================================================
+     AJOUT CORRECTION — NIVEAUX
+     Le champ courseLevel reste celui de ton HTML initial.
+     Ce script ajoute simplement les niveaux selon
+     le type d'enseignement choisi.
+====================================================== -->
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const educationLevel =
+        document.getElementById(
+            "courseEducationLevel"
+        );
+
+    const level =
+        document.getElementById(
+            "courseLevel"
+        );
+
+    if (!educationLevel || !level) {
+        return;
+    }
+
+
+    function updateCourseLevels() {
+
+        const selected =
+            educationLevel.value;
+
+        const currentValue =
+            level.value;
+
+        level.innerHTML = "";
+
+
+        const firstOption =
+            document.createElement("option");
+
+        firstOption.value = "";
+
+        firstOption.textContent =
+            "Sélectionner le niveau";
+
+        level.appendChild(
+            firstOption
+        );
+
+
+        let levels = [];
+
+
+        if (selected === "college") {
+
+            levels = [
+                "6e",
+                "5e",
+                "4e",
+                "3e"
+            ];
+
+        }
+
+
+        if (selected === "secondaire") {
+
+            levels = [
+                "Seconde",
+                "Première",
+                "Terminale"
+            ];
+
+        }
+
+
+        if (selected === "universite") {
+
+            levels = [
+                "Licence 1",
+                "Licence 2",
+                "Licence 3",
+                "Master 1",
+                "Master 2",
+                "Doctorat"
+            ];
+
+        }
+
+
+        levels.forEach(
+            item => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value =
+                    item;
+
+                option.textContent =
+                    item;
+
+                level.appendChild(
+                    option
+                );
+
+            }
+        );
+
+
+        if (
+            currentValue &&
+            levels.includes(currentValue)
+        ) {
+
+            level.value =
+                currentValue;
+
+        }
+
+    }
+
+
+    educationLevel.addEventListener(
+        "change",
+        updateCourseLevels
+    );
+
+
+    updateCourseLevels();
+
+});
+</script>
+
+</body>
+
+</html>

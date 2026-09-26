@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Travail+ — Documents</title>
+
+    <link rel="stylesheet" href="documents.css">
+</head>
+
+<body>
+
+    <!-- Barre de navigation -->
+    <header class="topbar">
+
+        <div class="logo">
+            Travail<span>+</span>
+        </div>
+
+        <!-- Retour vers le dashboard -->
+        <button
+            id="backButton"
+            class="back-button"
+            type="button"
+        >
+            ← Dashboard
+        </button>
+
+    </header>
+
+
+    <main class="documents-page">
+
+        <!-- En-tête de la page -->
+        <section class="page-header">
+
+            <p class="small-title">
+                RESSOURCES
+            </p>
+
+            <h1>
+                Documents 📚
+            </h1>
+
+            <p>
+                Retrouve les cours, exercices, examens et corrigés
+                adaptés à ton parcours.
+            </p>
+
+        </section>
+
+
+        <!-- Zone des filtres -->
+        <section class="filters-card">
+
+            <!-- Filtre faculté -->
+            <div class="filter-group">
+
+                <label for="facultyFilter">
+                    Faculté
+                </label>
+
+                <input
+                    id="facultyFilter"
+                    type="text"
+                    placeholder="Ex : Sciences"
+                >
+
+            </div>
+
+
+            <!-- Filtre département -->
+            <div class="filter-group">
+
+                <label for="departmentFilter">
+                    Département
+                </label>
+
+                <input
+                    id="departmentFilter"
+                    type="text"
+                    placeholder="Ex : Informatique"
+                >
+
+            </div>
+
+
+            <!-- Filtre niveau -->
+            <div class="filter-group">
+
+                <label for="levelFilter">
+                    Niveau
+                </label>
+
+                <input
+                    id="levelFilter"
+                    type="text"
+                    placeholder="Ex : Licence 3"
+                >
+
+            </div>
+
+
+            <!-- Filtre type de document -->
+            <div class="filter-group">
+
+                <label for="typeFilter">
+                    Type
+                </label>
+
+                <select id="typeFilter">
+
+                    <option value="">
+                        Tous les types
+                    </option>
+
+                    <option value="Cours">
+                        Cours
+                    </option>
+
+                    <option value="Exercice">
+                        Exercice
+                    </option>
+
+                    <option value="Examen">
+                        Examen
+                    </option>
+
+                    <option value="Corrigé">
+                        Corrigé
+                    </option>
+
+                    <option value="Autre">
+                        Autre
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Bouton de recherche -->
+            <button
+                id="filterButton"
+                class="filter-button"
+                type="button"
+            >
+                Rechercher
+            </button>
+
+        </section>
+
+
+        <!-- Message d'erreur ou d'information -->
+        <div
+            id="message"
+            class="message"
+            hidden
+        ></div>
+
+
+        <!-- Message affiché pendant le chargement -->
+        <div
+            id="loading"
+            class="loading"
+        >
+            Chargement des documents...
+        </div>
+
+
+        <!-- Conteneur des documents -->
+        <section
+            id="documentsContainer"
+            class="documents-grid"
+        ></section>
+
+
+        <!-- Message lorsqu'aucun document n'est trouvé -->
+        <div
+            id="emptyState"
+            class="empty-state"
+            hidden
+        >
+
+            <div class="empty-icon">
+                📂
+            </div>
+
+            <h2>
+                Aucun document trouvé
+            </h2>
+
+            <p>
+                Aucun document ne correspond aux filtres sélectionnés.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- JavaScript de la page -->
+    <script src="documents.js"></script>
+
+</body>
+
+</html>
